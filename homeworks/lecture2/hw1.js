@@ -4,8 +4,12 @@
 * This function does not handle getters and setters or copy attributes.
 */
 function extend(o, p) {
-    // implement your code here
+    for (let property in p) {
+        o[property] = p[property];     
+    }
+    return o
 }
+// console.log(extend({a: 1, b: 2}, {b: 3, c: 4})); 
 
 /*
 * Return a new object that holds the properties of both o and p.
@@ -13,6 +17,14 @@ function extend(o, p) {
 */
 function union(o, p) {
     // implement your code here
+    let result = {};
+    for (let property in p) {
+        result[property] = p[property];
+    }
+    for (let property in o) {
+        result[property] = o[property];
+    }
+    return result;
 }
 
 /*
@@ -21,7 +33,17 @@ function union(o, p) {
 */
 function restrict(o, p) {
     // implement your code here
+    for (let property in o) {
+        if (!(property in p)) {
+            delete o[property];
+        }
+    }
+    return o;
 }
+// let o = {a: 1, b: 2, c: 3};
+// let p = {a: 1, d: 4};
+// restrict(o, p);
+// console.log(o); 
 
 /*
 * Return a new object that holds only the properties of o that also appear
@@ -30,4 +52,11 @@ function restrict(o, p) {
 */
 function intersection(o, p) {
     // implement your code here
+    let result = {};
+    for (let property in o) {
+        if (property in p) {
+            result[property] = o[property];
+        }
+    }
+    return result;
 }
