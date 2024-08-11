@@ -19,11 +19,43 @@
  */
 function numIdenticalPairs(nums) {
   // implement here
+  record = {};
+  for (const num of nums) {
+    if (record[num]) {
+      record[num]++;
+    } else {
+      record[num] = 1;
+    }
+  }
+
+  let goodPairs = 0;
+  for (const count of Object.values(record)) {
+    if (count >= 2) {
+      goodPairs += (count * (count - 1)) / 2;
+    }
+  }
+  return goodPairs;
 }
+
+// testing
+// console.log(numIdenticalPairs([1, 2, 3, 1, 1, 3]));
+// console.log(numIdenticalPairs([1, 1, 1, 1]));
+// console.log(numIdenticalPairs([1, 2, 3]));
 
 /**
  * Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return the new string.
  */
 function removeVowels(s) {
   // implement here
+  const vowels = new Set(["a", "e", "i", "o", "u"]);
+  const res = [];
+  for (const c of s) {
+    if (!vowels.has(c)) {
+      res.push(c);
+    }
+  }
+  return res.join("");
 }
+
+// testing
+console.log(removeVowels("fullstacktraining"));

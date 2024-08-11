@@ -1,0 +1,1 @@
+### interview: data type: 要把symbol 加上

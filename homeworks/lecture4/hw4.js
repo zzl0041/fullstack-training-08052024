@@ -12,4 +12,20 @@
  */
 const intersection = (nums1, nums2) => {
   // Your solution here
+  if (nums1.length > nums2.length) {
+    const numsTemp = nums1;
+    nums1 = nums2;
+    nums2 = numsTemp;
+  }
+  const res = [];
+  nums1.forEach((num) => {
+    if (nums2.includes(num)) {
+      res.push(num);
+    }
+  });
+  return res;
 };
+
+// testing
+console.log(intersection([1, 2, 2, 1], [2, 2]));
+console.log(intersection([4, 9, 5], [9, 4, 9, 8, 4]));
