@@ -1,6 +1,10 @@
 // Hoisting
 
 // 1.
+// output:
+// undefined
+// 5
+// 5
 var x;
 
 if (x !== 3) {
@@ -17,6 +21,9 @@ if (x === 3) {
 
 
 // 2.
+// output:
+// 2
+// 2
 var x = 3;
 if (x === 3) {
   var x = 2;
