@@ -1,6 +1,6 @@
 /** Implement a User class with a private variable #password (Use closure, not # syntax).
  * The class should have methods to setPassword and checkPassword.
- * 
+ *
  * Example:
  * const user = new User();
  * user.setPassword('123456');
@@ -12,5 +12,17 @@
  * user.password; // undefined
  */
 function User() {
-    // implement here
+  let password
+
+  this.setPassword = function (input) {
+    if (password !== undefined) {
+      throw new Error('password can only be set once')
+    } else {
+      password = input
+    }
+  }
+
+  this.checkPassword = function (input) {
+    return input === password
+  }
 }
