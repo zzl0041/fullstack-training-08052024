@@ -20,16 +20,19 @@ bar(1);
 // rest(1, 2, 3, 4, 5);
 
 function defaultArgs(a = 1, b = 2, c, d, e, f) {
-  console.log('a =', a, 'b =', b);
+  console.log("a =", a, "b =", b);
 }
 defaultArgs(3, 4, 5, 6);
 defaultArgs(3);
 defaultArgs();
 
-function test(a, b, options = {}) {
+// 写代码小技巧:
+// arguments less than 4
+// can passed by as a object, like following
+function test(a, b, user = {}) {
   console.log(user.id, user.name);
 }
 
-test({ id: 1, name: 'aaron' });
-test({ name: 'aaron', id: '2' });
+test({ id: 1, name: "aaron" });
+test({ name: "aaron", id: "2" });
 test();

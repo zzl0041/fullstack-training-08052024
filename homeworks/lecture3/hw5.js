@@ -13,14 +13,18 @@
  */
 function User() {
   // implement here
-  var password;
+  let password = null;
 
-  function setPassword(pw) {
-    password = pw;
+  function setPassword(input) {
+    if (password === null) {
+      password = input;
+      return;
+    }
+    throw new Error("Error");
   }
 
-  function checkPassword(pw) {
-    return pw === password ? true : false;
+  function checkPassword(input) {
+    return input === password;
   }
 
   return {
@@ -28,3 +32,12 @@ function User() {
     checkPassword: checkPassword,
   };
 }
+
+const user = new User();
+user.setPassword("123456");
+console.log(user.checkPassword("123456")); // true
+console.log(user.checkPassword("123")); // false
+console.log(user.password); // undefined
+// user.setPassword("123"); // Error
+console.log(user.checkPassword("123")); // false
+console.log(user.password); // undefined

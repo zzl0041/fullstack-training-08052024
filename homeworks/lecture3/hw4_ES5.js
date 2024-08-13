@@ -20,13 +20,18 @@ Triangle.prototype.constructor = Triangle;
 // 1. implement a method getPerimeter for Triangle class
 // 2. implement a method getArea for Triangle class
 Triangle.prototype.getPerimeter = function () {
-  return this.a + this.b + this.c;
+  return (this.a + this.b + this.c).toFixed(2);
 };
 
 Triangle.prototype.getArea = function () {
-  const s = (this.a + this.b + this.c) / 2;
-  return Math.sqrt(s * (s - this.a) * (s - this.b) * (s - this.c));
+  const s = this.getPerimeter() / 2;
+  return Math.sqrt(s * (s - this.a) * (s - this.b) * (s - this.c)).toFixed(2);
 };
+
+// --- testing for Triangle object ---
+const triangle = new Triangle(2, 2, 3);
+console.log(triangle.getPerimeter());
+console.log(triangle.getArea());
 
 // 3. implement a new class Circle. this class should inherit from Shape class, and have a radius property.
 // 4. implement a method area for Circle class
@@ -39,12 +44,17 @@ Circle.prototype = Object.create(Shape.prototype);
 Circle.prototype.constructor = Circle;
 
 Circle.prototype.getArea = function () {
-  return Math.PI * this.radius * this.radius;
+  return (Math.PI * this.radius * this.radius).toFixed(2);
 };
 
 Circle.prototype.getCircumference = function () {
-  return Math.PI * this.radius * 2;
+  return (Math.PI * this.radius * 2).toFixed(2);
 };
 
+// --- testing for Circle object ---
+const circle = new Circle(3);
+console.log(circle.getArea());
+console.log(circle.getCircumference());
+
 // 6. change all code above to use ES6 class syntax
-// See hw4_1.js
+// See hw4_ES6.js

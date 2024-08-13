@@ -1,10 +1,24 @@
 // closure
 // return function declaration not execution!
+
+// Solution #1: set default parameter
+// function counter() {
+//   // implement here
+//   let counts = 0;
+//   return function add(num = 0) {
+//     counts += num;
+//     return counts;
+//   };
+// }
+
+// Solution #2: using argument2.length
 function counter() {
   // implement here
   let counts = 0;
-  return function add(num = 0) {
-    counts += num;
+  return function add() {
+    if (arguments.length === 1) {
+      counts += arguments[0];
+    }
     return counts;
   };
 }
