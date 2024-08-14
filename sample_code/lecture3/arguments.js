@@ -30,6 +30,6 @@ function test(a, b, options = {}) {
   console.log(user.id, user.name);
 }
 
-test({ id: 1, name: 'aaron' });
-test({ name: 'aaron', id: '2' });
+test(1, 2, { id: 1, name: 'aaron', location: '1234 Ave' });
+test(1, 2, { name: 'aaron', id: '2' });
 test();
