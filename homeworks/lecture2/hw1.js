@@ -4,7 +4,22 @@
 * This function does not handle getters and setters or copy attributes.
 */
 function extend(o, p) {
-    // implement your code here
+    // spread operator
+    // return { ...o, ...p }; // not work because it will return a new object
+    // 1. built-in
+    // Object.assign(o, p);
+    // 2. for ... in
+    // for (let prop in p) { // iterate over all enumerable properties of p
+    //     if (p.hasOwnProperty(prop)) { // make sure property belongs to p, not inherit
+    //         o[prop] = p[prop]; // copy to o
+    //     }
+    // }
+    // 3. forEach
+    Object.keys(p).forEach(function(prop) { // Object.key(): Loop through an object's keys
+        o[prop] = p[prop];
+    });
+
+    return o;
 }
 
 /*
@@ -12,7 +27,7 @@ function extend(o, p) {
 * If o and p have properties by the same name, the values from o are used.
 */
 function union(o, p) {
-    // implement your code here
+    return { ...p, ...o }; // 先将对象 p 的所有属性复制到新对象中，然后再将对象 o 的属性复制到这个新对象中。
 }
 
 /*
@@ -20,7 +35,12 @@ function union(o, p) {
 * Return o.
 */
 function restrict(o, p) {
-    // implement your code here
+    for (let prop in o) { // iterate over all enumerable properties of o
+        if (!p.hasOwnProperty(prop)) { // if p doesn't have this property
+            delete o[prop];
+        }
+    }
+    return o;
 }
 
 /*
@@ -29,5 +49,43 @@ function restrict(o, p) {
 * the properties in p are discarded
 */
 function intersection(o, p) {
-    // implement your code here
+    const res = {};
+    for (let prop in o) {
+        if (p.hasOwnProperty(prop)) {
+            res[prop] = o[prop];
+        }
+    }
+    return res;
 }
+
+// FOR TESTING
+// Base configuration
+const baseConfig = {
+    host: 'localhost',
+    port: 8080,
+    useSSL: false
+  };
+  
+  // New settings to extend the base configuration
+  const newSettings = {
+    port: 3000, // Change the port
+    useSSL: true, // Enable SSL
+    timeout: 5000 // Add a new property
+  };
+  
+  // Extend the base configuration with the new settings
+  extend(baseConfig, newSettings);
+  
+  console.log(baseConfig);
+  
+  union(baseConfig, newSettings);
+  
+  console.log(baseConfig);
+  
+  restrict(baseConfig, newSettings);
+  
+  console.log(baseConfig);
+  
+  intersection(baseConfig, newSettings);
+  
+  console.log(baseConfig);
