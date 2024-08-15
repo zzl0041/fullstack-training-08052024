@@ -1,14 +1,17 @@
 // Map
 const numbers = [1, 2, 3, 4, 5];
-const doubledNumbers = numbers.map(function (value, index, array) {
-  return num * 2;
+const doubledNumbers = numbers.map(function (value) {
+  return value * 2;
 });
 // numbers.forEach(function (value, index, array) {})
 
 console.log(doubledNumbers); // Output: [2, 4, 6, 8, 10]
 
 // Filter
-const evenNumbers = numbers.filter(num => num % 2 === 0);
+const evenNumbers = numbers.filter(function (num, index, array) { //index和array暂时用不上
+  return num % 2 === 0;
+}
+);
 
 console.log(evenNumbers); // Output: [2, 4]
 
@@ -38,7 +41,7 @@ const groupByCountry = employees.reduce((group, employee) => {
   if (!group[employee.country]) {
     group[employee.country] = [];
   }
-  group[employee.country].push(employee);
+  group[employee.country].push({name: employee.name});
   return group;
 }, {});
 
