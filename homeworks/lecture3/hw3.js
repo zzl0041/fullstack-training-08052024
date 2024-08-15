@@ -1,5 +1,7 @@
 function counter() {
     // implement here
+    let count = 0;
+    return (...params) => count += params[0] || 0;
 }
 
 let count = counter();
