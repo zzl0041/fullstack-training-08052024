@@ -19,11 +19,45 @@
  */
 function numIdenticalPairs(nums) {
   // implement here
+
+  // count number appearing times
+  const count = {}
+  for (let num of nums) {
+    if (count[num]) {
+      count[num] += 1;
+    }
+    else {
+      count[num] = 1;
+    }
+  }
+
+  //Find any number repeat > 1 time, n*(n-1)/2
+  let sum = 0;
+  for (let value of Object.values(count)) {
+    if (value > 1) {
+      sum += value * (value - 1) / 2;
+    }
+  }
+  return sum;
 }
+
+console.log(numIdenticalPairs([1, 2, 3, 1, 1, 3]));
+console.log(numIdenticalPairs([1, 1, 1, 1]));
+console.log(numIdenticalPairs([1, 2, 3]));
 
 /**
  * Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return the new string.
  */
 function removeVowels(s) {
   // implement here
+  let res = "";
+  const arr = ['a', 'e', 'i', 'o', 'u'];
+  for (let char of s) {
+    if (!arr.includes(char)) {
+      res += char;
+    }
+  }
+  return res;
 }
+
+console.log(removeVowels("agfqhaioueihfgvguiyht"));
