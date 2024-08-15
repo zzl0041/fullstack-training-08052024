@@ -11,5 +11,12 @@
  *
  */
 const intersection = (nums1, nums2) => {
-  // Your solution here
-};
+  const arr1 = nums1.length < nums2.length ? nums1 : nums2
+  const arr2 = arr1 === nums1 ? nums2 : nums1
+
+  const set = new Set(arr1)
+
+  return [...new Set(arr2.filter((num) => set.has(num)))]
+}
+
+// console.log(intersection([4, 9, 5], [9, 4, 9, 8, 4]))
