@@ -1,5 +1,15 @@
 function counter() {
     // implement here
+    var n = 0
+
+    function count() {
+        if(arguments.length === 1) {
+            n += arguments[0]
+        }
+        return n;
+      }
+
+    return count;
 }
 
 let count = counter();
