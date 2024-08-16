@@ -18,12 +18,38 @@
  * 1 <= nums[i] <= 100
  */
 function numIdenticalPairs(nums) {
-  // implement here
+    const freq = {};
+    let res = 0;
+    for (let num of nums) {
+        if (freq[num] === undefined) {
+            freq[num] = 1;
+        } else {
+            freq[num]++;
+        }
+    }
+    for (let key in freq) {
+        const count = freq[key];
+        res += (count * (count - 1)) / 2;
+    }
+    return res;
 }
+
+console.log(numIdenticalPairs([1, 2, 3, 1, 1, 3])); // 4
+console.log(numIdenticalPairs([1, 1, 1, 1])); // 6
+console.log(numIdenticalPairs([1, 2, 3])); // 0
+console.log(numIdenticalPairs([])); // 0
 
 /**
  * Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return the new string.
  */
 function removeVowels(s) {
-  // implement here
+    return s
+        .split("")
+        .filter((c) => !"aeiou".includes(c))
+        .join("");
 }
+
+console.log(removeVowels("abcde")); // bcd
+console.log(removeVowels("bdddd")); // bdddd
+console.log(removeVowels("")); //
+console.log(removeVowels("aeiou")); //
