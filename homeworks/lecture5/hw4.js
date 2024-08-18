@@ -1,6 +1,8 @@
 // what is the output? and explain why?
 
 // 1
+// output: 1\n2
+// because resolve value will be the input for then, and no reject catched
 Promise.resolve(1)
   .then(res => {
     console.log(res);
@@ -13,7 +15,9 @@ Promise.resolve(1)
     console.log(res);
   });
 
-// // 2
+// 2
+// output: 1\n3
+// the reject is catched to log 1, and then log 3 which returned from catch
 Promise.reject(1)
   .then(res => {
     console.log(res);
@@ -28,6 +32,8 @@ Promise.reject(1)
   });
 
 //3
+// output: Error: 2
+// Promise.all will reject with first rejection message comes in the array, which is runReject(2)
 function runAsync(x) {
   const p = new Promise(resolve =>
     setTimeout(() => resolve(x), 1000)
