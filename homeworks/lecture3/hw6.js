@@ -17,13 +17,47 @@
  * 1 <= nums.length <= 100
  * 1 <= nums[i] <= 100
  */
+
+// Double pointer
 function numIdenticalPairs(nums) {
   // implement here
+  let count = 0;
+  let left = 0; right = 1;
+  while(left < nums.length - 1) {
+    if(right === nums.length) {
+      left++;
+      right = left +1;
+    }
+    if(nums[left] === nums[right]) {
+      count++;
+    }
+    right++;
+  }
+  return count;
 }
+
+console.log(numIdenticalPairs([1,2,3,1,1,3]))
+console.log(numIdenticalPairs([1,1,1,1]))
+console.log(numIdenticalPairs([1,2,3]))
+console.log(numIdenticalPairs([]))
 
 /**
  * Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return the new string.
  */
 function removeVowels(s) {
   // implement here
+  // 1. Using replace()
+  // return s.replace(/[aeiou]/gi, '');
+  // 2. Using set
+  let res = '';
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  for(let char of s) {
+    if(!vowels.includes(char)) {
+      res += char;
+    }
+  }
+  return res;
 }
+console.log(removeVowels("leetcodeisacommunityforcoders")); // ltcdscmmntyfrcdrs
+console.log(removeVowels("hello")); // hll
+console.log(removeVowels("aeiou")); // ""
