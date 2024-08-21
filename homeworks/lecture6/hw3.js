@@ -15,6 +15,13 @@
  */
 function debounce(func, delay) {
   // your code here
+  let callback_fn = func;
+  let delay_time = delay;
+  let task = null;
+  return () => {
+    clearTimeout(task);
+    task = setTimeout(callback_fn, delay_time);
+  };
 }
 
 /**
@@ -34,4 +41,22 @@ function debounce(func, delay) {
  */
 function throttle(func, delay) {
   // your code here
+  let callback_fn = func;
+  let delay_time = delay;
+  let is_called = false;
+  let task = null;
+  return () => {
+    if (is_called) {
+      clearInterval(task);
+    }
+    else {
+      task = setInterval(callback_fn, delay_time);
+      is_called = true;
+    }
+  }
 }
+
+const printHello = () => console.log('hello')
+const throttledFn = throttle(printHello, 1000)
+throttledFn()
+throttledFn() // ignored
