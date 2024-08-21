@@ -4,11 +4,15 @@
 for (var i = 0; i < 5; i++) {
   setTimeout(() => console.log(i), 1000);
 }
+// output: 5 5 5 5 5
+// reason: setTimeout excute after 1 second instead of immediately. WHen it is excuted, the for loop is completed and variable i, which is declared by var (functionally scope), now is 5.
 
 // 2
 for (let i = 0; i < 5; i++) {
   setTimeout(() => console.log(i), 1000);
 }
+// output: 0 1 2 3 4
+// reason: the variable i is declared by let, which is block scope, so the i is independent for each iteration.
 
 // 3
 for (var i = 0; i < 5; i++) {
@@ -16,6 +20,8 @@ for (var i = 0; i < 5; i++) {
     setTimeout(() => console.log(i), 1000);
   })(i);
 }
+// output: 0 1 2 3 4
+// reason: IIFE is invokled immediately with current i in each interation.
 
 // 4
 let fn = () => {
@@ -25,6 +31,8 @@ setTimeout(fn, 1000);
 fn = () => {
   console.log('I am another fn');
 }
+// output: I am another fn
+// reason: before setTimeout is excuted, fn has been reassigned to a new functiion, so the new function is excuted instead of the old one.
 
 // 5
 let obj = {
@@ -32,3 +40,5 @@ let obj = {
 }
 setTimeout(() => console.log(obj), 1000);
 obj.name = 'another obj';
+// output: { name: 'another obj' }
+// reason: the object obj is passed by reference, so it will be modified before setTimeout is excuted.
