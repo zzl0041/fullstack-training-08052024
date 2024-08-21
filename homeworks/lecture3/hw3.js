@@ -1,5 +1,7 @@
 function counter() {
     // implement here
+    let sum = 0;
+    return function(n){return Number.isInteger(n)?sum+=n:sum};
 }
 
 let count = counter();

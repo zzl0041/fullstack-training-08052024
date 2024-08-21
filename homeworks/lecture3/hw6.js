@@ -19,6 +19,15 @@
  */
 function numIdenticalPairs(nums) {
   // implement here
+  let n = nums.length
+  let res = [];
+  for(let i = 0; i < n-1; i++){
+    for(j = i+1; j < n; j++){
+      if(nums[i] == nums[j] && i < j)
+        res.push([i, j]);
+    }
+  }
+  return res.length;
 }
 
 /**
@@ -26,4 +35,10 @@ function numIdenticalPairs(nums) {
  */
 function removeVowels(s) {
   // implement here
+  let res = '';
+  for(let element of s) {
+    if (element !== 'a' && element !== 'e' && element !== 'i' && element !== 'o' && element !== 'u') res+=element;
+  };
+  return res;
 }
+console.log(removeVowels('leetcodeisacommunityforcoders')); //ltcdscmmntyfrcdrs
