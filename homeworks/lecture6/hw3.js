@@ -8,15 +8,25 @@
  * const debouncedFn = debounce(printHello, 1000)
  * debouncedFn()
  * debouncedFn() // timer reset to 1s
- * 
+ *
  * @param {function} func
  * @param {number} delay
  * @returns {function}
  */
+
 function debounce(func, delay) {
   // your code here
-}
+  let timer
 
+  return (...args) => {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
+      func(...args)
+    }, delay)
+  }
+}
 /**
  * implement throttle function
  * explain: `func` will be called every `delay` ms. if `func` is called again before `delay` ms, the call will be ignored
@@ -27,11 +37,32 @@ function debounce(func, delay) {
  * const throttledFn = throttle(printHello, 1000)
  * throttledFn()
  * throttledFn() // ignored
- * 
+ *
  * @param {function} func
  * @param {number} delay
  * @returns {function}
  */
 function throttle(func, delay) {
   // your code here
+  let lastCall = 0
+  let timer
+
+  return (...args) => {
+    const now = Date.now()
+
+    if (timer === undefined) {
+      lastCall = now
+      timer = setInterval(() => {
+        func(...args)
+      }, delay)
+    }
+
+    if (now - lastCall >= delay) {
+      clearInterval(timer)
+      lastCall = now
+      timer = setInterval(() => {
+        func(...args)
+      }, delay)
+    }
+  }
 }
