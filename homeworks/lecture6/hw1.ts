@@ -1,5 +1,3 @@
-import { error } from "console";
-
 // 1. why there would be error in the following code? and how to fix it?
 type User = {
   id: number;
