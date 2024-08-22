@@ -6,4 +6,14 @@
  */
 function format(num) {
   // your code here
+  let nums1, nums2 = num.toString().split(".")
+  let arr1 = Array.from(nums1)
+  for(let i = arr1.length-3; i>=0; i-= 3){
+    arr1.splice(i,0,",")
+  }
+  ans = arr1.join('')
+  if (nums2 != null){
+    ans = ans + '.' + nums2
+  } 
+  return ans
 }
