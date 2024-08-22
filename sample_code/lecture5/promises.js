@@ -28,7 +28,7 @@ getJSON('https://api.github.com/users/chuwa-fullstack-training')
     console.log(data);
     return new Promise(resolve => resolve('a'));
   })
-  .then(data => console.log(data))
+  .then(data => console.log("here" + data))
   .catch(error => console.error(error));
 
 // Promise-based example

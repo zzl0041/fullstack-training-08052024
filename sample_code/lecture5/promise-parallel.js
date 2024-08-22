@@ -1,13 +1,19 @@
+function getJSON(url) {
+  return fetch(url).then((res) => res.json());
+}
+
 const urls = [
-  'https://api.github.com/search/repositories?q=javascript',
-  'https://api.github.com/search/repositories?q=react',
-  'https://api.github.com/search/repositories?q=nodejs'
+  "https://api.github.com/search/repositories?q=javascript",
+  "https://api.github.com/search/repositories?q=react",
+  "https://api.github.com/search/repositories?q=nodejs",
 ];
 
-const promises = urls.map(url => getJSON(url));
+const promises = urls.map((url) => getJSON(url));
 
-Promise.all(promises).then(allRes => console.log(allRes)).catch();
+Promise.all(promises)
+  .then((allRes) => console.log(allRes))
+  .catch();
 
-Promise.race(promises).then(firstRes => console.log(firstRes));
+Promise.race(promises).then((firstRes) => console.log(firstRes));
 
-Promise.allSettled(promises).then(allRes => console.log(allRes));
+Promise.allSettled(promises).then((allRes) => console.log(allRes));

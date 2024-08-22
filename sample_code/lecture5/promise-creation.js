@@ -34,7 +34,7 @@ function getJSON(url) {
 }
 
 function wait(delay) {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     if (delay < 0) reject(new Error('Delay must be >= 0'));
     setTimeout(resolve, delay);
   });
