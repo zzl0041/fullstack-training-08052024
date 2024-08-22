@@ -19,6 +19,15 @@
  */
 function numIdenticalPairs(nums) {
   // implement here
+  let ans = 0
+  for (let i = 0; i<nums.length - 1; i++){
+    for (let j = i + 1; j <= nums.length - 1; j++){
+      if (nums[i] == nums[j]){
+        ans += 1
+      }
+    }
+  }
+  return ans
 }
 
 /**
@@ -26,4 +35,11 @@ function numIdenticalPairs(nums) {
  */
 function removeVowels(s) {
   // implement here
+  let ans = ""
+  for (let str in s){
+    if ("aeiou".includes(str)){
+      ans += str
+    }
+  }  
+  return ans 
 }

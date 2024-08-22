@@ -13,4 +13,19 @@
  */
 function User() {
     // implement here
+    let password = null
+    
+    this.setPassword = function(pwd){
+        if (pwd.length >= 6){
+            password = pwd
+        }
+        else{
+            throw new Error();
+        }
+    }
+    
+    this.checkPassword = function(pwd){
+        return password == pwd
+    }
 }
+
