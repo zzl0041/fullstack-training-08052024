@@ -3,19 +3,19 @@
 // 1
 for (var i = 0; i < 5; i++) {
   setTimeout(() => console.log(i), 1000);
-}
+} //5,5,5,5,5
 
 // 2
 for (let i = 0; i < 5; i++) {
   setTimeout(() => console.log(i), 1000);
-}
+}//0,1,2,3,4,
 
 // 3
 for (var i = 0; i < 5; i++) {
   (function (i) {
     setTimeout(() => console.log(i), 1000);
   })(i);
-}
+}// 0,1,2,3,4
 
 // 4
 let fn = () => {
@@ -24,11 +24,11 @@ let fn = () => {
 setTimeout(fn, 1000);
 fn = () => {
   console.log('I am another fn');
-}
+} // i am another fn
 
 // 5
 let obj = {
   name: 'obj',
 }
 setTimeout(() => console.log(obj), 1000);
-obj.name = 'another obj';
+obj.name = 'another obj'; //'another obj'
