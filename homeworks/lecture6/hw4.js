@@ -5,5 +5,8 @@
  * @param {number} num
  */
 function format(num) {
-  // your code here
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+console.log(format(12345678));
+console.log(format(1234.56));

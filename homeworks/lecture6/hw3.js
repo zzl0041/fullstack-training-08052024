@@ -8,13 +8,21 @@
  * const debouncedFn = debounce(printHello, 1000)
  * debouncedFn()
  * debouncedFn() // timer reset to 1s
- * 
+ *
  * @param {function} func
  * @param {number} delay
  * @returns {function}
  */
 function debounce(func, delay) {
-  // your code here
+  let timeoutId;
+  return (...args) => {
+    if (timeoutId) {
+      clearInterval(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
 }
 
 /**
@@ -27,11 +35,18 @@ function debounce(func, delay) {
  * const throttledFn = throttle(printHello, 1000)
  * throttledFn()
  * throttledFn() // ignored
- * 
+ *
  * @param {function} func
  * @param {number} delay
  * @returns {function}
  */
 function throttle(func, delay) {
-  // your code here
+  let timeoutId;
+  return (...args) => {
+    if (timeoutId) return;
+    timeoutId = setTimeout(() => {
+      func(...args);
+      timeoutId = null;
+    }, delay);
+  };
 }
