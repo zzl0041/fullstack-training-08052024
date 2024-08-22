@@ -11,10 +11,11 @@ let checked: boolean = true;
 let list: number[] = [1, 2, 3];
 let list2: Array<number> = [1, 2, 3];
 
-// type: tuple
+// type: tuple: 固定长度，固定data type，常用于position
 let x: [string, number] = ['hello', 10];
+let pos: [number, number] = [0, 0];
 
-// type: enum
+// type: enum: use less now
 // const Direction = {
 //   Up: 'Up',
 //   Down: 'Down'
@@ -35,7 +36,8 @@ notSure = [1, 2, 3];
 
 let another: string = notSure;
 
-// type: unknown
+// type: unknown: 
+// have to use type assertion or narrow to a specific type if want to perform operations on it
 let userInput: unknown;
 
 userInput = 5;
@@ -51,13 +53,14 @@ let obj2: object = function () {};
 let obj3: object = [1, 2, 3];
 
 // type: void
+// for function: doesn't return any value
 function logMessage(): void {
   console.log('This is a message');
 }
-
+// meaningless declaring a variable to type void, because you can still assign it to null (when strictNullChecks - false) or undefined
 let unusable: void = undefined || null; // strictNullChecks - false
 
-// type: never
+// type: never: represents the type of values that never occur
 function error(message: string): never {
   throw new Error(message);
 }
@@ -81,6 +84,6 @@ let n: null = null;
 let u: undefined = undefined;
 let n2: number = null;
 let u2: number = undefined;
-// --strictNullChecks
+// --strictNullChecks - true: null, undefined can only assign to unknown, any
 
 export {};

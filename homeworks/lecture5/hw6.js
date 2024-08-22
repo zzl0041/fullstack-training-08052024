@@ -74,8 +74,8 @@ const urls = [
 ];
 console.log(
   sequencePromise(urls)
-    .then((bodies) => {
-      console.log(bodies);
+    .then((res) => {
+      console.log(res);
     })
     .catch((err) => console.log(err))
 );

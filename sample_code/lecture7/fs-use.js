@@ -1,34 +1,36 @@
-const { log } = require('console');
-const fs = require('fs');
-const path = require('path');
+// const { log } = require('console');
+const fs = require("fs");
+const path = require("path");
 
-const fileName = path.join(__dirname, 'demo.txt');
+const fileName = path.join(__dirname, "demo.txt");
 // log('start');
 // async
-fs.writeFile(fileName, 'Hello World', err => {
+fs.writeFile(fileName, "Hello World", (err) => {
   if (err) {
     throw err;
   } else {
-    log('The file has been saved!');
+    // log('The file has been saved!');
+    console.log("The file has been saved!");
   }
 });
 // log('after write');
 
-fs.readFile(fileName, { encoding: 'utf8' }, (err, data) => {
+fs.readFile(fileName, { encoding: "utf8" }, (err, data) => {
   if (err) {
     throw err;
   } else {
-    log(data);
+    // log(data);
+    console.log(data);
   }
 });
 
 // sync
 try {
-  fs.writeFileSync(fileName, 'Hello World');
+  fs.writeFileSync(fileName, "Hello World");
 
-  let result = fs.readFileSync(fileName, { encoding: 'utf8' });
-  log('reaf file sync', result);
-  log('end');
+  let result = fs.readFileSync(fileName, { encoding: "utf8" });
+  log("reaf file sync", result);
+  log("end");
 } catch (err) {
   console.log(err.message);
 }
