@@ -1,4 +1,3 @@
-const { log } = require('console');
 const fs = require('fs');
 const path = require('path');
 
@@ -9,7 +8,7 @@ fs.writeFile(fileName, 'Hello World', err => {
   if (err) {
     throw err;
   } else {
-    log('The file has been saved!');
+    console.log('The file has been saved!');
   }
 });
 // log('after write');
@@ -18,7 +17,7 @@ fs.readFile(fileName, { encoding: 'utf8' }, (err, data) => {
   if (err) {
     throw err;
   } else {
-    log(data);
+    console.log(data);
   }
 });
 
