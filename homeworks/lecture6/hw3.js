@@ -15,7 +15,21 @@
  */
 function debounce(func, delay) {
   // your code here
+  let timer;
+  return function (...args) {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
 }
+const printHello = () => console.log('hello')
+const debouncedFn = debounce(printHello, 1000)
+debouncedFn()
+debouncedFn() // timer reset to 1s
+
 
 /**
  * implement throttle function
@@ -34,4 +48,17 @@ function debounce(func, delay) {
  */
 function throttle(func, delay) {
   // your code here
+  let timer;
+  return function (...args) {
+    if (!timer) {
+      func.apply(this, args);
+      timer = setTimeout(() => {
+        timer = null;
+      }, delay);
+    }
+  }
 }
+
+const throttledFn = throttle(printHello, 1000)
+throttledFn()
+throttledFn() // ignored

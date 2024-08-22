@@ -12,4 +12,10 @@
  */
 const intersection = (nums1, nums2) => {
   // Your solution here
+  return nums1.filter((num1) => nums2.includes(num1))
+    .filter((value, index, self) => self.indexOf(value) === index);
+  // The second filter remove the duplicates
+  //Or it can be
+  // return [...new Set(nums1.filter((num1) => nums2.includes(num1)))];
 };
+console.log(intersection(nums1 = [4, 9, 5], nums2 = [9, 4, 9, 8, 4]));
