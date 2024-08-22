@@ -15,7 +15,22 @@
  */
 function debounce(func, delay) {
   // your code here
+  let timer;
+  return function(...args) {
+    if (timer) {
+      clearTimeout(timer);
+      // console.log('timer reset');
+    }
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  }
 }
+
+// const printHello = () => console.log('hello');
+// const debouncedFn = debounce(printHello, 1000);
+// debouncedFn();
+// debouncedFn();
 
 /**
  * implement throttle function
@@ -34,4 +49,16 @@ function debounce(func, delay) {
  */
 function throttle(func, delay) {
   // your code here
+  let lastCall = 0;
+  return function(...args) {
+    const now = new Date().getTime();
+    if (now - lastCall >= delay) {
+      lastCall = now;
+      func.apply(this, args);
+    }
+  }
 }
+const printHello = () => console.log('hello')
+const throttledFn = throttle(printHello, 1000)
+throttledFn()
+throttledFn() // ignored

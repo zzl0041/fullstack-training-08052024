@@ -6,4 +6,9 @@
  */
 function format(num) {
   // your code here
+  const reg = /\B(?=(\d{3})+(?!\d))/g;
+  return num.toString().replace(reg, ',');
 }
+console.log(format(12345678));
+console.log(format(1234.56));
+console.log(format(-1234.56));

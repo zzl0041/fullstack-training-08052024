@@ -28,7 +28,7 @@ const persons: Person[] = [
 // fix the error showing in the following code:
 function logPerson(person: Person) {
   let additionalInformation: string;
-  if (person.role) {
+  if ('role' in person) { // type guard, since Person is a union type and only Admin has the role property
     additionalInformation = person.role;
   } else {
     additionalInformation = person.occupation;
