@@ -2,7 +2,7 @@
 
 // 1
 // output: a\nc\ne\nd\nb
-// the promise is sync, so a, c, e will show as they are in the main codes.
+// the log('e') inside promise is sync, so a, c, e will show as they are in the main codes.
 // Then the microtask Promise.then's result d will show. Then the setTimeout b will show
 console.log('a');
 setTimeout(() => console.log('b'), 0);
@@ -15,7 +15,7 @@ new Promise((resolve, reject) => {
 
 // 2
 // output: 1\nstart\nsuccess
-// the promise is sync, thus 1 will show firstly. Then 'start' after the promise. 
+// the log(1) inside promise is sync, thus 1 will show firstly. Then 'start' afterward. 
 // Then the microtask promise.then's 'success'
 const fn = () =>
   new Promise((resolve, reject) => {

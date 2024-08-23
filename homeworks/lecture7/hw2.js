@@ -19,3 +19,43 @@
  */
 
 // your code here
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
+const url = require('url'); 
+
+const server = http.createServer((request, response) => {
+  const { url: request_url, method: request_method } = request;
+  const url_obj = url.parse(request_url, true);
+  console.log(url_obj);
+  if (request_method === 'GET') {
+    if (url_obj.pathname === '/api/parsetime') {
+        let input_time = new Date(url_obj.query.iso);
+        response.writeHead(200, { 'Content-Type': 'application/json' });
+        response.write(JSON.stringify({
+            hour: input_time.getHours(),
+            minute: input_time.getMinutes(),
+            second: input_time.getSeconds(),
+        }));
+        response.end();
+    } 
+    else if (url_obj.pathname === '/api/unixtime') {
+        let input_time = new Date(url_obj.query.iso);
+        response.writeHead(200, { 'Content-Type': 'application/json' });
+        response.write(JSON.stringify({
+            unixtime: input_time.getTime(),
+        }));
+        response.end();
+    }
+    else {
+        response.end('404 Not Found');
+    }
+  }
+  else {
+    response.end('Unsupported Method');
+  }
+});
+
+server.listen(5500, () => {
+  console.log('Server is running on port 5500');
+});

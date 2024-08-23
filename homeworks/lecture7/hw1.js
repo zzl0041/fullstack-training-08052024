@@ -14,3 +14,23 @@
  */
 
 // your code here
+const fs = require('fs');
+const path = require('path');
+const process = require('process');
+
+const print_files = (dirname, ext) => {
+    try {
+        let files = fs.readdirSync(dirname);
+        // consider . not included in ext
+        let ext_files = files.filter(file => path.extname(file).slice(1) == ext);
+        return ext_files;
+    }
+    catch (err) {
+        console.log(err.message);
+        return err.message;
+    }
+}
+
+// console.log(print_files(__dirname, "js"));
+let cur_ext_files = print_files(process.argv[2], process.argv[3]);
+console.log(cur_ext_files);
