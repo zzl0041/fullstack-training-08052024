@@ -31,9 +31,8 @@ setTimeout(fn, 1000);
 fn = () => {
   console.log('I am another fn');
 }
-// output: I am another fn
-// reason: before setTimeout is excuted, fn has been reassigned to a new functiion, so the new function is excuted instead of the old one.
-
+// output: I am fn
+// reason: When fn is passed to setTimeout, it captures the reference to the function as it was at that moment. The reassignment of fn to a different function happens after setTimeout is set up, but the reference to the original function has already been captured by setTimeout.
 // 5
 let obj = {
   name: 'obj',
