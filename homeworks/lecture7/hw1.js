@@ -14,3 +14,32 @@
  */
 
 // your code here
+const { log } = require('console');
+const fs = require('fs');
+const path = require('path');
+
+// async
+const printFiles = (dirname, ext) => {
+    ext = '.' + ext;
+    fs.readdir(dirname, (err, files) => {
+        if (err) {
+            log(err.message);
+            return;
+        }
+        let filesSelected = files.filter(file => path.extname(file) === ext);
+        filesSelected.forEach(file => log(file));
+    });
+}
+
+// directly print current working directory on terminal
+// printFiles(__dirname, "js");
+
+// command line
+const dirname = process.argv[2];
+const ext = process.argv[3];
+if (dirname && ext) {
+    printFiles(dirname, ext);
+} else {
+    console.log("Please provide a directory name and file extension.");
+    console.log("e.g. node hw1.js . txt");
+}
