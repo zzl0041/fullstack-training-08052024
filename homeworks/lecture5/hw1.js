@@ -54,10 +54,10 @@ fn = () => {
   console.log('I am another fn');
 }
 /* 
-I am another fn
-When setTimeout is executed, 
-the other part in the main function already has finished execution, 
-which means fn has been resignned to another funtion.   
+I am fn
+setTimeout restores a reference to fn when it is called.
+Reassigning fn to a different function will not affect the setTimeout,
+because at the moment setTimeout executed it still hold the reference to original fn 
 */
 
 // 5
@@ -68,7 +68,6 @@ setTimeout(() => console.log(obj), 1000);
 obj.name = 'another obj';
 /*
 another obj
-When setTimeout is executed, 
-the other part in the main function already has finished execution, 
-which means obj.name has been updated to another obj.
+When setTimeout is called, it capture a reference to obj, it remains the same.
+So change the property of object will affect the object itself.
 */
