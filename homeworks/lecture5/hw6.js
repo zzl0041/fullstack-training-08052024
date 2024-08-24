@@ -12,10 +12,15 @@ function sequencePromise(urls) {
     return getJSON(url).then(response => results.push(response));
   }
   // implement your code here
-
+  const promises = urls.reduce((acc, url) =>{
+    return acc.then(()=> fetchOne(url)).then(result =>{
+      results.push(result);
+    });
+  }, Promise.resolve());
   return results;
 }
 
+//const { getJSON } = require('./httpUtils');
 // option 1
 function getJSON(url) {
   // this is from hw5
