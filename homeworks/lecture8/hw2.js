@@ -42,3 +42,35 @@
  *  }
  * }
  */
+
+const express = require('express');
+const path = require('path');
+const app = express();
+const port = 5500;
+
+app.get('/hw2', (req, res, next) => {
+    let queries = [req.query.query1, req.query.query2];
+    const promise1 = fetch(`https://hn.algolia.com/api/v1/search?query=${queries[0]}&tags=story`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json(); 
+    });
+    const promise2 = fetch(`https://hn.algolia.com/api/v1/search?query=${queries[1]}&tags=story`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json(); 
+    })
+    Promise.allSettled([promise1, promise2])
+    .then((results) => 
+        res.json(results.reduce((acc, result, idx) => {
+            acc[queries[idx]] = {title: result.value.hits[0]?.title};
+            return acc;
+        }, {}))
+    );
+});
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
