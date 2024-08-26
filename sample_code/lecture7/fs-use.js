@@ -4,6 +4,7 @@ const path = require("path");
 
 const fileName = path.join(__dirname, "demo.txt");
 // log('start');
+console.log("start");
 // async
 fs.writeFile(fileName, "Hello World", (err) => {
   if (err) {
@@ -14,6 +15,7 @@ fs.writeFile(fileName, "Hello World", (err) => {
   }
 });
 // log('after write');
+console.log("after write");
 
 fs.readFile(fileName, { encoding: "utf8" }, (err, data) => {
   if (err) {
@@ -24,13 +26,13 @@ fs.readFile(fileName, { encoding: "utf8" }, (err, data) => {
   }
 });
 
-// sync
-try {
-  fs.writeFileSync(fileName, "Hello World");
+// sync version
+// try {
+//   fs.writeFileSync(fileName, "Hello World");
 
-  let result = fs.readFileSync(fileName, { encoding: "utf8" });
-  log("reaf file sync", result);
-  log("end");
-} catch (err) {
-  console.log(err.message);
-}
+//   let result = fs.readFileSync(fileName, { encoding: "utf8" });
+//   console.log("read file sync", result);
+//   console.log("end");
+// } catch (err) {
+//   console.log(err.message);
+// }

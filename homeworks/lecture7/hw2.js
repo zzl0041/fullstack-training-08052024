@@ -19,3 +19,63 @@
  */
 
 // your code here
+const http = require("http");
+const url = require("url");
+const PORT = 3000;
+
+const server = http.createServer((req, res) => {
+  const { url: reqUrl, method } = req;
+  // parse the url
+  const parsedUrl = url.parse(reqUrl, true);
+  // console.log(parsedUrl);
+  // destructuring the parsed url
+  const {
+    pathname,
+    query: { iso: isoTime },
+  } = parsedUrl;
+  // console.log(pathname);
+  // console.log(query);
+  // console.log(isoTime);
+  if (method === "GET") {
+    if (pathname === "/api/parsetime") {
+      if (!isoTime) {
+        res.end("No iso time provide.");
+      }
+      // convert to time object
+      const parseTime = new Date(isoTime);
+      // write a json file and return it
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.write(
+        JSON.stringify({
+          hour: parseTime.getHours(),
+          minute: parseTime.getMinutes(),
+          second: parseTime.getSeconds(),
+        })
+      );
+      res.end();
+    } else if (pathname === "/api/unixtime") {
+      if (!isoTime) {
+        res.end("No iso time provide.");
+      }
+      // convert to time object and get unix time stamp
+      const unixTimestamp = new Date(isoTime).getTime();
+      // console.log(unixTimestamp);
+      // write a json file and return it
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.write(
+        JSON.stringify({
+          unixtime: unixTimestamp,
+        })
+      );
+      res.end();
+    } else {
+      res.end("this is the 404 page");
+    }
+  } else {
+    res.end("Unsupported method");
+  }
+});
+
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

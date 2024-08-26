@@ -14,3 +14,31 @@
  */
 
 // your code here
+
+const fs = require("fs");
+const path = require("path");
+const { argv } = require("node:process");
+
+function printFilterFiles(dir, fileExtension) {
+  fs.readdir(dir, (err, files) => {
+    if (err) console.log(err);
+    else {
+      console.log(`Found following files`);
+      files
+        .filter((file) => path.extname(file) === fileExtension)
+        .forEach((file) => {
+          console.log(file);
+        });
+    }
+  });
+}
+
+const dir = process.argv[2];
+const fileExtension = "." + process.argv[3];
+
+if (!dir || !fileExtension) {
+  console.log(`please provide valid directory and file extension`);
+  return;
+}
+
+printFilterFiles(dir, fileExtension);
