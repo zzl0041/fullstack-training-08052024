@@ -9,3 +9,65 @@
  * 3. you need to figure out how to parse the query string in the home.html page
  * 4. after writing the html content, you need to write the query string in the html as well
  */
+
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
+const urls = require('url');
+
+const server = http.createServer((req, res) => {
+  const { url, method } = req;
+  if (method === 'GET') {
+    const parsedUrl = urls.parse(url, true)
+    const pathName = parsedUrl.pathname;
+    if (pathName === '/') {
+      res.end('this is the home page');
+    } else if (pathName === '/about') {
+      res.end('this is the about page');
+    } else if (pathName === '/home.html') {
+      fs.readFile(path.join(__dirname, 'home.html'), 'utf8', (err, html) => {
+        if (err) {
+          res.end('error');
+        } else {
+          res.writeHead(200, { 'Content-Type': 'text/html' });
+          const title = parsedUrl.query.title;
+          const content = parsedUrl.query.content;
+          let modifiedHtml;
+
+          if(title && content) {
+            modifiedHtml = html.replace('{{title}}', title).replace('{{content}}', content);
+          } else {
+            modifiedHtml = html
+            .replace('<p>Title: {{title}}</p>', '')
+            .replace('<p>Content: {{content}}</p>', '');
+          }
+          res.write(modifiedHtml);
+          res.end();
+        }
+      });
+    } else {
+      res.end('this is the 404 page');
+    }
+  } else if (method === 'POST') {
+    if (url === '/create-post') {
+      let body = [];
+      req.on('data', chunk => {
+        body.push(chunk);
+      });
+      req.on('end', () => {
+        const parsedBody = Buffer.concat(body).toString();
+        res.statusCode = 302;
+        res.setHeader('Location', `/home.html?${parsedBody}`);
+        res.end();
+      });
+    } else {
+      res.end('this is the 404 page');
+    }
+  } else {
+    res.end('Unsupported method');
+  }
+});
+
+server.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});

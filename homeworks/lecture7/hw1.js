@@ -14,3 +14,28 @@
  */
 
 // your code here
+
+const fs = require('fs').promises;
+const path = require('path');
+
+// Get the command-line arguments
+const dir = process.argv[2];
+const ext = process.argv[3];
+
+fs.readdir(dir)
+    .then(files => {
+        files.forEach(element => {
+            if(path.extname(element) === '.' + ext) {
+                console.log(element)
+            }
+        });
+    })
+    .catch(err => {
+        console.error('Error reading directory:', err);
+    });
+
+    // (base) zhulin@zhudeMBP lecture7 % node hw1.js . js
+    // hw1.js
+    // hw2.js
+    // hw3.js
+
