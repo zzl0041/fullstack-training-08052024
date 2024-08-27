@@ -17,7 +17,7 @@
  *   ...
  *   }
  * ]}
- * 
+ *
  * result from https://hn.algolia.com/api/v1/search?query=banana&tags=story:
  * {
  *  "hits": [
@@ -27,7 +27,7 @@
  *   ...
  *   }
  * ]}
- * 
+ *
  * final result from http://localhost:3000/hw2?query1=apple&query2=banana:
  * {
  *   "apple":
@@ -42,3 +42,40 @@
  *  }
  * }
  */
+
+const express = require('express')
+const app = express()
+
+app.get('/hw2', async (req, res) => {
+  const { query1, query2 } = req.query
+
+  try {
+    const response1 = await fetch(
+      `https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(
+        query1
+      )}&tags=story`
+    )
+    const data1 = await response1.json()
+
+    const response2 = await fetch(
+      `https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(
+        query2
+      )}&tags=story`
+    )
+    const data2 = await response2.json()
+
+    const result = {
+      [query1]: data1.hits[0] || {},
+      [query2]: data2.hits[0] || {},
+    }
+
+    res.json(result)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+})
+
+const PORT = 5000
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`)
+})
