@@ -17,15 +17,13 @@ function debounce(func, delay) {
   // your code here
   let id;
 
-  return function(...args) {
+  return function() {
     if(id) {
       clearTimeout(id);
       console.log('function debounced!')
     }
 
-    id = setTimeout(() => {
-      func.apply(this, args);
-    }, delay)
+    id = setTimeout(func, delay)
   };
 }
 const printHello = () => console.log('hello from debounced')
@@ -55,9 +53,9 @@ function throttle(func, delay) {
   // your code here
   let id;
 
-  return function(...args) {
+  return function() {
     if(!id) {
-      func.apply(this, args);
+      func.apply(this);
       id = setTimeout(() => {
         id = null;
       }, delay);
