@@ -18,4 +18,36 @@
  * 2. response.writeHead(200, { contentType: 'application/json' })
  */
 
-// your code here
+const http = require('http')
+const url = require('url')
+
+const server = http.createServer((req, res) => {
+  const parsedUrl = url.parse(req.url, true)
+  const path = parsedUrl.pathname
+  const iso = parsedUrl.query.iso
+
+  let response
+  const date = new Date(iso)
+
+  if (path === '/api/parsetime') {
+    response = {
+      hour: date.getUTCHours(),
+      minute: date.getUTCMinutes(),
+      second: date.getUTCSeconds(),
+    }
+  } else if (path === '/api/unixtime') {
+    response = {
+      unixtime: date.getTime(),
+    }
+  }
+
+  if (response) {
+    res.writeHead(200, { 'Content-Type': 'application/json' })
+    res.end(JSON.stringify(response))
+  } else {
+    res.writeHead(404)
+    res.end()
+  }
+})
+
+server.listen(8000)
