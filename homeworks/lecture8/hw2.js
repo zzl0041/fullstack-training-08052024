@@ -42,3 +42,13 @@
  *  }
  * }
  */
+const express = require('express');
+const app = express()
+const router = require('./router')
+
+app.use('/hw2',router)
+
+app.listen(3000,()=>{
+    console.log('server is on')
+})
+
