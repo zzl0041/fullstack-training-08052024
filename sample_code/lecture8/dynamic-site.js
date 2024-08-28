@@ -1,11 +1,19 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 
-app.set('view engine', 'pug');
-app.set('views', './views');
+app.set("view engine", "pug");
+app.set("views", "./views");
 
-app.get('/', (req, res) => {
-  res.render('index', { title: 'Pug Template', name: 'Aaron' });
+app.get("/", (req, res) => {
+  res.render("index", { title: "Pug Template", name: "Aaron" });
 });
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
+app.get("/view", (req, res) => {
+  res.send(app.get("views"));
+});
+
+app.get("/viewengine", (req, res) => {
+  res.send(app.get("view engine"));
+});
+
+app.listen(3000, () => console.log("Example app listening on port 3000!"));

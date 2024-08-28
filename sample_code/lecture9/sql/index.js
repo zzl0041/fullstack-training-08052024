@@ -1,52 +1,58 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes } = require("sequelize");
 
-const sequelize = new Sequelize('test', 'root', 'root1234', {
-  host: '127.0.0.1',
-  dialect: 'mysql'
+// make connection
+const sequelize = new Sequelize("test", "root", "root1234", {
+  host: "127.0.0.1",
+  dialect: "mysql", // tell use which database
 });
 
+// promise base authenticate
 sequelize
   .authenticate()
   .then(() => {
-    console.log('Connection has been established successfully.');
+    console.log("Connection has been established successfully.");
   })
-  .catch(error => {
-    console.error('Unable to connect to the database: ', error);
+  .catch((error) => {
+    console.error("Unable to connect to the database: ", error);
   });
 
-const User = sequelize.define('users', {
+// sequelize.define(tableName, tableContent)
+const User = sequelize.define("users", {
   firstName: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   lastName: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
   },
   email: {
     type: DataTypes.STRING,
-    allowNull: false
-  }
+    allowNull: false,
+  },
 });
 
-const Post = sequelize.define('posts', {
+const Post = sequelize.define("posts", {
   title: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   content: {
     type: DataTypes.TEXT,
-    defaultValue: 'default content'
-  }
+    defaultValue: "default content",
+  },
 });
 
-Post.Author = Post.belongsTo(User, { as: 'author' });
+Post.Author = Post.belongsTo(User, { as: "author" });
 
+// sql version
 // INSERT INTO users (firstName, lastName, email) VALUES ('Aaron', 'Zhang', 'test@gmail');
+
+// sequelize version
 function createUser({ firstName, lastName, email }) {
   return User.create({
     firstName,
     lastName,
-    email
+    email,
   });
 }
 
@@ -60,7 +66,7 @@ function findAllUsers() {
 
 // SELECT * FROM users WHERE id = <id>;
 function findUserById(id, callback) {
-  return User.findByPk(id).then(user => {
+  return User.findByPk(id).then((user) => {
     if (callback) return callback(user);
     console.log(user.firstName, user.lastName);
     return Promise.resolve(user);
@@ -69,16 +75,16 @@ function findUserById(id, callback) {
 
 // UPDATE users SET firstName = 'Alex', lastName = 'Chen' WHERE id = <id>;
 function updateUser(id) {
-  return findUserById(id, user => {
-    user.firstName = 'Alex';
-    user.lastName = 'Chen';
+  return findUserById(id, (user) => {
+    user.firstName = "Alex";
+    user.lastName = "Chen";
     return user.save();
   });
 }
 
 // DELETE FROM users WHERE id = <id>;
 function deleteUser(id) {
-  return findUserById(id, user => {
+  return findUserById(id, (user) => {
     return user.destroy();
   });
 }
@@ -86,7 +92,7 @@ function deleteUser(id) {
 sequelize
   .sync({ force: true })
   .then(() => {
-    console.log('tables created successfully!');
+    console.log("tables created successfully!");
     // createUser({ firstName: 'something', lastName: 'new', email: 'unknown@test.com' });
     // return findAllUsers();
     // return findUserById(1);
@@ -120,7 +126,7 @@ sequelize
   //     console.log('deleted successfully!');
   //   })
   // .then(post => console.log(post.title, post.author.firstName))
-  .catch(error => {
+  .catch((error) => {
     console.error(error);
   })
   .finally(() => {

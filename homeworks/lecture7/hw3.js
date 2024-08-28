@@ -11,24 +11,45 @@
  */
 const http = require("http");
 const fs = require("fs");
+const url = require("url");
 const path = require("path");
-const querystring = require("querystring");
 const PORT = 3000;
 
 const server = http.createServer((req, res) => {
-  const { url, method } = req;
+  const { url: reqUrl, method } = req;
+  const parsedUrl = url.parse(reqUrl, true);
+  // console.log(parsedUrl);
+  const {
+    pathname,
+    query: { title, content },
+  } = parsedUrl;
+
+  // console.log(title), console.log(content);
+
   if (method === "GET") {
-    if (url === "/") {
+    if (pathname === "/") {
       res.end("this is the home page");
-    } else if (url === "/about") {
+    } else if (pathname === "/about") {
       res.end("this is the about page");
-    } else if (url.startsWith("/home.html")) {
-      fs.readFile(path.join(__dirname, "home.html"), (err, html) => {
+    } else if (pathname === "/home.html") {
+      fs.readFile(path.join(__dirname, "home.html"), "utf8", (err, html) => {
         if (err) {
           res.end("error");
         } else {
           res.writeHead(200, { "Content-Type": "text/html" });
-          res.write(html);
+          let updatedHtml = html;
+          if (title && content) {
+            updatedHtml = html.replace(
+              " <p>Title: {{title}} Content: {{content}}</p>",
+              `<p>Title: ${title} Content: ${content}</p>`
+            );
+          } else {
+            updatedHtml = html.replace(
+              " <p>Title: {{title}} Content: {{content}}</p>",
+              ""
+            );
+          }
+          res.write(updatedHtml);
           res.end();
         }
       });
@@ -36,16 +57,14 @@ const server = http.createServer((req, res) => {
       res.end("this is the 404 page");
     }
   } else if (method === "POST") {
-    if (url === "/create-post") {
+    if (reqUrl === "/create-post") {
       let body = [];
       req.on("data", (chunk) => {
         body.push(chunk);
       });
       req.on("end", () => {
         const parsedBody = Buffer.concat(body).toString();
-        console.log(parsedBody);
-        const inputData = querystring.parse(parsedBody);
-        console.log(inputData);
+        // console.log(parsedBody);
         res.statusCode = 302;
         res.setHeader("Location", `/home.html?${parsedBody}`);
         res.end();
