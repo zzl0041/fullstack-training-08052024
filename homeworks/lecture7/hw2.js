@@ -24,32 +24,32 @@ const urls = require('url');
 const PORT = 3000;
 
 const server = http.createServer((req, res) => {
-    const {url, method} = req;
-    res.writeHead(200, { contentType: 'application/json' });
+  const { url, method } = req;
+  res.writeHead(200, { contentType: 'application/json' });
 
-    if(method === 'GET') {
-        const parseUrl = urls.parse(url, true);
-        const pathName = parseUrl.pathname;
-        const iso = parseUrl.query.iso;
-        const date = new Date(iso)
+  if (method === 'GET') {
+    const parseUrl = urls.parse(url, true);
+    const pathName = parseUrl.pathname;
+    const iso = parseUrl.query.iso;
+    const date = new Date(iso);
 
-        if(pathName === '/api/parsetime') {
-            const parseDate = {}
-            parseDate.hour = date.getHours();
-            parseDate.minute = date.getMinutes();
-            parseDate.second = date.getSeconds();
-            res.end(JSON.stringify(parseDate));
-        } else if(pathName === '/api/unixtime') {
-            const unixTime = { unixtime: date.getTime()};
-            res.end(JSON.stringify(unixTime));
-        } else {
-            res.end('this is the 404 page');
-        }
+    if (pathName === '/api/parsetime') {
+      const parseDate = {};
+      parseDate.hour = date.getHours();
+      parseDate.minute = date.getMinutes();
+      parseDate.second = date.getSeconds();
+      res.end(JSON.stringify(parseDate));
+    } else if (pathName === '/api/unixtime') {
+      const unixTime = { unixtime: date.getTime() };
+      res.end(JSON.stringify(unixTime));
     } else {
-        res.end('Unsupported method');
+      res.end('this is the 404 page');
     }
-})
+  } else {
+    res.end('Unsupported method');
+  }
+});
 
 server.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-})
+  console.log(`Server is running on port ${PORT}`);
+});

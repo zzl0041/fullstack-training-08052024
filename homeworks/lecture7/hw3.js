@@ -1,7 +1,7 @@
 /**
  * For sample code web-server.js, make the following changes:
  * Once submitting in home.html, stay on the same page and display the submitted data.
- * 
+ *
  * Hint:
  * 1. put the data of the submitted form in the query string of the url
  * 2. before res.end() in POST method, redirect to the home.html page with the query string
@@ -18,7 +18,7 @@ const urls = require('url');
 const server = http.createServer((req, res) => {
   const { url, method } = req;
   if (method === 'GET') {
-    const parsedUrl = urls.parse(url, true)
+    const parsedUrl = urls.parse(url, true);
     const pathName = parsedUrl.pathname;
     if (pathName === '/') {
       res.end('this is the home page');
@@ -34,12 +34,14 @@ const server = http.createServer((req, res) => {
           const content = parsedUrl.query.content;
           let modifiedHtml;
 
-          if(title && content) {
-            modifiedHtml = html.replace('{{title}}', title).replace('{{content}}', content);
+          if (title && content) {
+            modifiedHtml = html
+              .replace('{{title}}', title)
+              .replace('{{content}}', content);
           } else {
             modifiedHtml = html
-            .replace('<p>Title: {{title}}</p>', '')
-            .replace('<p>Content: {{content}}</p>', '');
+              .replace('<p>Title: {{title}}</p>', '')
+              .replace('<p>Content: {{content}}</p>', '');
           }
           res.write(modifiedHtml);
           res.end();
@@ -51,7 +53,7 @@ const server = http.createServer((req, res) => {
   } else if (method === 'POST') {
     if (url === '/create-post') {
       let body = [];
-      req.on('data', chunk => {
+      req.on('data', (chunk) => {
         body.push(chunk);
       });
       req.on('end', () => {
