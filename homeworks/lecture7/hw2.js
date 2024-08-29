@@ -19,3 +19,36 @@
  */
 
 // your code here
+const http = require('http');
+const url = require('url');
+const server = http.createServer((req, res)=>{
+    const {url: requestUrl, method} = req;
+    if(method==='GET'){
+        const parsedUrl = url.parse(requestUrl, true);
+        const path = parsedUrl.pathname;
+        const time = parsedUrl.query.iso;
+        if(path==='/api/parsetime'){
+            const date = new Date(time);
+            const jsonTime = {
+                hour: date.getHours(),
+                minute: date.getMinutes(),
+                second: date.getSeconds()
+            };
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify(jsonTime));
+        }else if(path==='/api/unixtime'){
+            const date = new Date(time);
+            const jsonTime = {
+                unixtime: date.getTime()
+            };
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify(jsonTime));
+        }
+    }else{
+        res.writeHead(405, {'Content-Type': 'application/json'});
+        res.end('Unsupported method');
+    }
+})
+server.listen(3002, ()=>{
+    console.log('3002 port');
+});

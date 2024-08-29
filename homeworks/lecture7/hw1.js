@@ -14,3 +14,25 @@
  */
 
 // your code here
+const path = require("path");
+const fs = require('fs');
+const {log} = require('console');
+const { argv } = require("node:process");
+
+function printFiles(directory, fileExtension){
+    if(!fs.existsSync(directory)) return;
+    fileExtension += '.'
+    fs.readdir(directory, (err, files)=>{
+        if(err) return;
+        let filesSelected = files.filter(file => path.extname(file)===fileExtension);
+        filesSelected.forEach(file=>log(file));
+    })
+}
+const dir = process.argv[2];
+const fileExtension = process.argv[3];
+console.log(dir)
+console.log(fileExtension)
+if(dir && fileExtension) printFiles(dir, fileExtension);
+else{
+    console.log(" *    e.g. node hw1.js currentDir txt - process.argv[2] is `currentDir`, process.argv[3] is `txt`")
+}
