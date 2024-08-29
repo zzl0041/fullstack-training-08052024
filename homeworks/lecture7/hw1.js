@@ -14,3 +14,27 @@
  */
 
 // your code here
+const fs = require("fs");
+const path = require("path");
+
+const directory = process.argv[2];
+const extension = "." + process.argv[3];
+
+fs.readdir(directory, (err, files) => {
+  if (err) {
+    throw new Error("Error occurs when scanning current directory");
+  }
+  files.forEach((file) => {
+    if (path.extname(file) === extension) {
+      console.log(file);
+    }
+  });
+});
+
+// test:
+// node hw1.js . js
+
+// output:
+// hw1.js
+// hw2.js
+// hw3.js
