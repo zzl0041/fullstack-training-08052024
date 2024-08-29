@@ -1,0 +1,16 @@
+{
+  "name": "lecture8hw",
+  "version": "1.0.0",
+  "description": "hw",
+  "main": "hw1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon hw3.js"
+  },
+  "author": "lin zhu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4"
+  }
+}

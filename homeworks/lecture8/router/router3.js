@@ -44,13 +44,47 @@
  */
 
 const express = require('express');
-const app = express();
-const port = 3000;
+const router = express.Router();
 
-const hw2Router = require('./router/router3');
+router.get('/', async (req, res) => {
+  const query1 = req.query.query1;
+  const query2 = req.query.query2;
 
-app.use('/hw2', hw2Router);
+  let selectData1 = null;
+  let selectData2 = null;
 
-app.listen(port, () => {
-  console.log('hw2 app listening on port 3000!');
+  try {
+    const response = await fetch(
+      `https://hn.algolia.com/api/v1/search?query=${query1}&tags=story`
+    );
+    const data1 = await response.json();
+    selectData1 = {
+      created_at: data1.hits[0].created_at,
+      title: data1.hits[0].title,
+    };
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch data from external API' });
+  }
+
+  try {
+    const response = await fetch(
+      `https://hn.algolia.com/api/v1/search?query=${query1}&tags=story`
+    );
+    const data2 = await response.json();
+    selectData2 = {
+      created_at: data2.hits[0].created_at,
+      title: data2.hits[0].title,
+    };
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch data from external API' });
+  }
+
+  const final = {
+    [query1]: selectData1,
+    [query2]: selectData2,
+  };
+
+  res.json(final);
 });
+
+module.exports = router;
