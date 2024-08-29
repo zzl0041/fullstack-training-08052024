@@ -20,6 +20,10 @@ const path = require('path');
 
 // async
 const printFiles = (dirname, ext) => {
+    if (!fs.existsSync(dirname)) {
+        log('Directory does not exist!');
+        return;
+    }
     ext = '.' + ext;
     fs.readdir(dirname, (err, files) => {
         if (err) {
