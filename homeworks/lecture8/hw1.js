@@ -9,3 +9,19 @@
  *    You don't need to handle the case like http://localhost:3000/hw1/test/test/txt.
  * 3. hw2 should be able to handle requests with query strings like it did in lecture 7;
  */
+
+const express = require("express");
+const app = express();
+const port = 3000;
+
+const fileExtRouter = require("./routers/fileExt");
+const timeRouter = require("./routers/time");
+
+app.use("/hw1", fileExtRouter);
+app.use("/api", timeRouter);
+
+app.listen(port, () => console.log(`App listening on port ${port}!`));
+
+// http://localhost:3000/hw1/test/js
+// http://localhost:3000/api/parsetime?iso=2023-05-22T12:34:56.789Z
+// http://localhost:3000/api/unixtime?iso=2023-05-22T12:34:56.789Z
