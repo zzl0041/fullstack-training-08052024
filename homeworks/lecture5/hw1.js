@@ -27,7 +27,8 @@ for (var i = 0; i < 5; i++) {
 let fn = () => {
   console.log("I am fn");
 };
-setTimeout(fn, 1000);
+// setTimeout(fn, 1000);
+setTimeout(() => fn, 1000);
 fn = () => {
   console.log("I am another fn");
 };
