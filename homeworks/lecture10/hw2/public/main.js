@@ -1,10 +1,17 @@
 function handleCheck(ele) {
   const id = ele.dataset.id;
+  const checked = ele.checked;
   fetch(`/api/todos/${id}`, {
     method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ isComplete: checked }),
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log(checked);
+      console.log(id);
       console.log(data);
     });
 }
@@ -17,7 +24,7 @@ function handleSubmit() {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ todo }),
+    body: JSON.stringify({ todoItem: todo }),
   })
     .then((res) => res.json())
     .then((data) => {
