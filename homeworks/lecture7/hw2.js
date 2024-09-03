@@ -19,3 +19,43 @@
  */
 
 // your code here
+const http = require("http");
+const url = require("url");
+
+function handleParseTime(isoDate) {
+  const date = new Date(isoDate);
+  return {
+    hour: date.getUTCHours(),
+    minute: date.getUTCMinutes(),
+    second: date.getUTCSeconds(),
+  };
+}
+
+function handleUnixTime(isoDate) {
+  const date = new Date(isoDate);
+  return {
+    unixtime: date.getTime(),
+  };
+}
+
+const server = http.createServer((req, res) => {
+  const parseUrl = url.parse(req.url, true);
+  const isoDate = parseUrl.query.iso;
+  let result;
+  if (parseUrl.pathname === "/api/parsetime") {
+    result = handleParseTime(isoDate);
+  } else if (parseUrl.pathname === "/api/unixtime") {
+    result = handleUnixTime(isoDate);
+  }
+  if (result) {
+    res.writeHead(200, { contentType: "application/json" });
+    res.end(JSON.stringify(result));
+  } else {
+    res.writeHead(404);
+    res.end();
+  }
+});
+
+server.listen(3000, () => {
+  console.log("Server is listening on port 3000");
+});
