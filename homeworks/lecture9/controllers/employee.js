@@ -6,7 +6,7 @@ const getAllEmployees = async (req, res) => {
     const employees = await Employee.find().populate('company');
     res.status(200).json(employees);
   } catch (err) {
-    cconsole.error('Error fetching all employees:', err.message);
+    console.error('Error fetching all employees:', err.message);
     res.status(500).json({ message: 'Server Error' });
   }
 };
