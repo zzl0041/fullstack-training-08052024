@@ -1,10 +1,10 @@
-const express = require('express');
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
-const userRouter = require('./routers/users');
-const postRouter = require('./routers/posts');
-const connectDB = require('./db');
-const errorHandlerMiddleware = require('./middlewares/errorHandler');
+const express = require("express");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const userRouter = require("./routers/users");
+const postRouter = require("./routers/posts");
+const connectDB = require("./db");
+const errorHandlerMiddleware = require("./middlewares/errorHandler");
 
 const app = express();
 const port = 3000;
@@ -20,7 +20,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 }
+    cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 },
   })
 );
 
@@ -28,32 +28,32 @@ const authMiddleware = (req, res, next) => {
   if (req.session.user) {
     next();
   } else {
-    res.status(401).send('Unauthorized');
+    res.status(401).send("Unauthorized");
   }
 };
 
-app.post('/login', (req, res) => {
+app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
-  if (username === 'admin' && password === 'admin') {
+  if (username === "admin" && password === "admin") {
     req.session.user = { username };
-    res.send('Logged in');
+    res.send("Logged in");
   } else {
-    res.status(400).send('Invalid credentials');
+    res.status(400).send("Invalid credentials");
   }
 });
 
-app.get('/logout', (req, res) => {
+app.get("/logout", (req, res) => {
   req.session.destroy();
-  res.send('Logged out');
+  res.send("Logged out");
 });
 
-app.get('/api/protected', authMiddleware, (req, res) => {
-  res.send('Protected data');
+app.get("/api/protected", authMiddleware, (req, res) => {
+  res.send("Protected data");
 });
 
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
+  const err = new Error("Not Found");
   err.statusCode = 404;
   next(err);
 });
