@@ -42,3 +42,79 @@
  *  }
  * }
  */
+
+const { rejects } = require('assert');
+const express = require('express');
+const app = express();
+const https = require('https');
+const { resolve } = require('path');
+const { title } = require('process');
+const PORT = 3002;
+
+function fetchData(query){
+    const url = 'https://hn.algolia.com/api/v1/search?query=${query}&tags=story';
+    return new Promise((resolve, reject)=>{
+        https.get(url, (res)=>{
+            let data = '';
+            res.on('data', chunk =>{
+                data += chunk;
+            });
+            res.on('end', ()=>{
+                try{
+                    const result = JSON.parse(data);
+                    if(result.hits && result.hits.length > 0)
+                        resolve(result.hits[0]);
+                    else
+                        resolve(null);
+                }catch(error){
+                    reject(error);
+                }
+            });
+        }).on('error', (err)=>{
+            reject(err);
+        });
+    })
+}
+
+app.get('/hw2', async(req, res)=>{
+    const {query1, query2} = req.query;
+    if(!query1||!query2)
+        return res.status(400).json({error: 'missing query'});
+    try{
+        const result1 = await fetchData(query1);
+        const result2 = await fetchData(query2);
+
+        const finalResult = {};
+        if(result1){
+            finalResult[query1] = {
+                created_at: result1.created_at,
+                title: result1.title
+            };
+        }
+        if(result2){
+            finalResult[query2] = {
+                created_at: result2.created_at,
+                title: result2.title
+            };
+        }
+        res.status(200).json(finalResult);
+    }catch(e){
+        res.status(500).json({error: e.message});
+    }
+});
+
+app.listen(PORT, ()=>{
+    console.log('running on ${PORT}');
+});
+
+// http://127.0.0.1:3002/hw2?query1=apple&query2=banana
+// {
+//     "apple": {
+//         "created_at": "2018-07-18T10:36:35Z",
+//         "title": "Ask HN: How to stop Google indexing dynamic search pages?"
+//     },
+//     "banana": {
+//         "created_at": "2018-07-18T10:36:35Z",
+//         "title": "Ask HN: How to stop Google indexing dynamic search pages?"
+//     }
+// }
