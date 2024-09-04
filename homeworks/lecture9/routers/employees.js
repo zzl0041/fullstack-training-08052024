@@ -2,7 +2,6 @@ const express = require("express");
 const {
   getAllEmployees,
   getOneEmployee,
-  getAllEmployeesOfCompany,
   createEmployee,
   updateEmployee,
   deleteEmployee,
@@ -12,8 +11,6 @@ const router = express.Router();
 router.get("/", getAllEmployees);
 
 router.get("/:id", getOneEmployee);
-
-router.get("/company/:companyId", getAllEmployeesOfCompany);
 
 router.post("/", createEmployee);
 

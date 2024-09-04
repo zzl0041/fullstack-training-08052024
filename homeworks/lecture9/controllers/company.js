@@ -63,10 +63,23 @@ const deleteCompany = async (req, res) => {
   }
 };
 
+const getAllEmployeesOfCompany = async (req, res) => {
+  try {
+    const company = await Company.findById(req.params?.id);
+    if (!company) {
+      return res.status(404).json({ message: "Company not found" });
+    }
+    res.status(200).json(company.employees);
+  } catch (err) {
+    res.status(500).json({ message: "Server Error" });
+  }
+};
+
 module.exports = {
   getAllCompanies,
   getOneCompany,
   createCompany,
   updateCompany,
   deleteCompany,
+  getAllEmployeesOfCompany,
 };

@@ -5,6 +5,7 @@ const {
   createCompany,
   updateCompany,
   deleteCompany,
+  getAllEmployeesOfCompany,
 } = require("../controllers/company");
 const router = express.Router();
 
@@ -17,5 +18,7 @@ router.post("/", createCompany);
 router.put("/:id", updateCompany);
 
 router.delete("/:id", deleteCompany);
+
+router.get("/:id/employees", getAllEmployeesOfCompany);
 
 module.exports = router;
