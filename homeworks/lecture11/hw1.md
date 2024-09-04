@@ -13,7 +13,7 @@ Based on hw1 in lecture 9, you are required to implement authentication and auth
 
 ### Authentication
 
-POST /api/login: User login
+- POST /api/login: User login
 
 ### Employee APIs
 
