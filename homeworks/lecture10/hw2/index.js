@@ -19,9 +19,7 @@ app.use("/api", todoRouter);
 
 app.get("/", async (req, res) => {
   try {
-    console.log('here')
     const todos = await Todo.find();
-    console.log(todos)
     res.render("index", { todos: todos.length > 0 ? todos : [] });
   } catch (err) {
     res.status(500).send("Server Error");
