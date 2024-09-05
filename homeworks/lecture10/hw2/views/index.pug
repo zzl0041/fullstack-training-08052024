@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title Todo List
+    link(rel='stylesheet', href='/styles.css')
+  body
+  .container
+    h1 Todo List
+    ul
+      each todo in todos
+        li
+          input(type='checkbox', checked=todo.completed, onchange=`document.getElementById('complete-${todo._id}').submit()`)
+          | #{todo.title}
+          form(id=`complete-${todo._id}`, action=`/todos/complete/${todo._id}`, method='POST', style='display:inline')
+            button(type='submit', style='display:none') Complete
+          form(action=`/todos/delete/${todo._id}`, method='POST', style='display:inline')
+            button(type='submit') Delete
+
+    h2 Add a New Todo
+    form(action='/todos/add', method='POST')
+      input(type='text', name='title', placeholder='Todo Title', required)
+      button(type='submit') Add Todo
