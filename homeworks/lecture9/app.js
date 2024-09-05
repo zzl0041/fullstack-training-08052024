@@ -10,7 +10,7 @@ const testRoutes = require('./routes/testRoutes');
 
 const app = express();
 app.use(express.json());
-const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://root:Hzpeng527@terencelincluster0.ppmro.mongodb.net/';
+const mongoURI = process.env.MONGODB_URI;
 
 mongoose.connect(mongoURI)
     .then(()=>console.log('MongoDB connected'))
