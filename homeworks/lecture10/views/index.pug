@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title Todo List
+  body
+    h1 Todo List
+
+    ul
+      each todo in todos
+        li
+          | #{todo.title} - #{todo.completed ? 'Completed' : 'Pending'}
+          form(action=`/${todo._id}/complete` method="POST" style="display:inline")
+            button(type="submit") Complete
+          form(action=`/${todo._id}/delete` method="POST" style="display:inline")
+            button(type="submit") Delete
+
+    h2 Add a New Todo
+    form(action="/add" method="POST")
+      input(type="text" name="title" placeholder="Enter a new todo" required)
+      textarea(name="description" placeholder="Enter a description")
+      button(type="submit") Add Todo
