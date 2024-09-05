@@ -6,6 +6,11 @@ const employeeSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
   company: { type: mongoose.Schema.Types.ObjectId, ref: "Company" },
   password: { type: String, required: true },
+  startDate: { type: Date, required: true },
+  jobTitle: { type: String, required: true },
+  resigned: { type: Boolean, default: false },
+  salary: { type: Number, required: true },
+  manager: { type: mongoose.Schema.Types.ObjectId, ref: "Employee" },
 });
 
 // Password hashing
