@@ -1,0 +1,43 @@
+header {
+    text-align: center;
+    padding: 10px;
+    background-color: #e7abab;
+    border: dashed red;
+}
+
+nav {
+    overflow: hidden;
+    padding: 10px;
+    background-color: #c3da72;
+    border: dashed red;
+}
+
+nav a {
+    color: #5747a7;
+    padding-right: 30px;
+}
+
+main {
+    display: flex;
+}
+
+aside {
+    flex: 20%;
+    padding: 10px;
+    background-color: #d8cbe8;
+    border: dashed red;
+}
+
+article {
+    flex: 80%;
+    padding: 10px;
+    background-color: #734e9d;
+    border: dashed red;
+}
+
+footer {  
+    text-align: center;
+    padding: 5px;
+    background-color: #cc6bd7;
+    border: dashed red;
+  }
