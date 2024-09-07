@@ -14,3 +14,39 @@
  */
 
 // your code here
+const fs = require('fs');
+const path = require('path');
+const process = require('process');
+
+const directory = process.argv[2];
+let extention = process.argv[3];
+
+if (!extention.startsWith('.')) {
+  extention = `.${extention}`;
+}
+
+fs.readdir(directory, (err, files) => {
+  if (err) {
+    // If directory does not exist or do not have permission or not the right path.
+    return console.error(`Directory can not be reach. ${err}`);
+  }
+
+  if (!files) {
+    // If no file in the directory.
+    return console.error('No file exists.');
+  }
+
+  filtered_Files = files.filter((value) => {
+    return path.extname(value) === extention;
+  });
+
+  if (filtered_Files.length === 0) {
+    // If it's an empty array
+    console.log('No file has the right extention.');
+  }
+
+  filtered_Files.forEach(element => {
+    console.log(element);
+  });
+});
+

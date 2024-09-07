@@ -42,3 +42,67 @@
  *  }
  * }
  */
+const https = require('https');
+const express = require('express');
+const { title } = require('process');
+const app = express();
+
+//Use promise to make sure asynchronous request complete
+function fetchData(query) {
+  return new Promise((resolve, reject) => {
+    let data = '';
+
+    https.get(`https://hn.algolia.com/api/v1/search?query=${query}&tags=story`, (response) => {
+
+      response.on('data', (chunk) => {
+        data += chunk;
+      });
+      response.on('end', () => {
+        const parsedData = JSON.parse(data);
+        resolve(parsedData);
+      });
+      response.on('error', (err) => {
+        reject(`Error during Response: ${err.message}`);
+      });
+    }).on('error', (err) => {
+      reject(`Error before Response: ${err.message}`);
+    });
+  });
+}
+// make the handler function async to use await
+app.get('/hw2', async (req, res, next) => {
+  const query1 = req.query.query1;
+  const query2 = req.query.query2;
+
+  try {
+    const [data1, data2] = await Promise.all([fetchData(query1), fetchData(query2)]);
+    let resultData = {};
+
+    function dataProcess(query, data) {
+
+      // resultData[`${query}`] = [];
+      // parsedData.hits.forEach((hit) => {
+      //   let tempObj = {};
+      //   tempObj.created_at = hit.created_at;
+      //   tempObj.title = hit.title;
+      //   resultData[`${query}`].push(tempObj);
+      // });
+
+      resultData[`${query}`] = data.hits.map((hit) => ({
+        created_at: hit.created_at,
+        title: hit.title,
+      }));
+    }
+    dataProcess(query1, data1);
+    dataProcess(query2, data2);
+
+    res.json(resultData);
+
+  }
+  catch (err) {
+    res.status(500).send("Fetching Data Error.");
+  }
+});
+
+
+app.listen(3000, () => console.log('Server is running on port 3000.'));
