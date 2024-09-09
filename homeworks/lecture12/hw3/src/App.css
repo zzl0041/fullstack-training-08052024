@@ -1,0 +1,35 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0rem;
+  text-align: center;
+}
+
+.button-row {
+  display: flex;
+}
+
+button {
+  background: lightgray;
+  border-style: outset;
+  border-width: 10px;
+  border-color: lightgray;
+  color: black;
+  padding: 20px 40px;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+button:active {
+  border-style: inset;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 10px 5px rgb(121, 165, 224);
+}
+
+.number-display {
+  display: flex;
+  font-size: 40px;
+}
