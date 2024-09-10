@@ -1,0 +1,54 @@
+.phone {
+    display: block;
+    border: 2px solid black;
+    border-radius: 20px;
+    width: 450px;
+    height: 800px;
+    position: relative;
+}
+
+.screen {
+    display: block flex;
+    gap: 10px;
+    flex-direction: column;
+    border: 2px solid grey;
+    width: 90%;  
+    height: 80%; 
+    background-color: rgb(158, 158, 231);
+    position: absolute;
+    top: 50%;    
+    left: 50%;   
+    transform: translate(-50%, -50%);
+}
+
+.status-bar {
+    display: block;
+    border: 1px dashed white;
+    flex: 1; 
+    position: relative;
+    text-align: center;
+}
+
+.op-area {
+    display: block grid;
+    grid-template-columns: repeat(4,80px); 
+    grid-template-rows: repeat(5,80px);
+    flex: 9; 
+    align-content: space-evenly;
+    justify-content: space-evenly;
+    position: relative;
+    text-align: center;
+}
+
+.button-square {
+    display: block flex;
+    border: 2px solid black;
+    border-radius: 20px; 
+    justify-content: center; 
+    align-items: center;
+    background-color: aliceblue;
+}
+
+.button-square p{
+    font-size: 40px;
+}
