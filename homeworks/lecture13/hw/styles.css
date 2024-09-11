@@ -1,0 +1,143 @@
+.hw-1 {
+  /* border: 1px solid black; */
+  width: 24rem;
+  padding: 6rem;
+  padding-top: 1rem;
+  font-family: Arial, sans-serif;
+}
+
+.hw-1-title {
+}
+
+.todo-input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid darkgrey;
+}
+
+.todo-input:focus {
+  outline: none !important;
+  border: 1px solid rgb(122, 189, 240);
+  border-radius: 2px;
+  box-shadow: 0px 0px 3px 3px rgb(122, 189, 240, 0.75);
+}
+
+button {
+  padding: 0.5rem 0.75rem;
+  background-color: white;
+  border: 1px solid rgb(97, 103, 110);
+  border-radius: 4px;
+  color: rgb(80, 80, 80);
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: rgb(97, 103, 110);
+  color: white;
+}
+
+button:focus {
+  box-shadow: 0px 0px 3px 3px rgb(97, 103, 110, 0.85);
+}
+
+.remaining-and-clear-all-completed-todos {
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  gap: 10px;
+  margin-bottom: 0.75rem;
+}
+
+.todos-list {
+  border: 1px solid rgb(180, 180, 180);
+  border-radius: 0.25rem;
+  margin-top: 1rem;
+}
+
+.todo-item {
+  display: flex;
+  padding: 0.5rem;
+  border-bottom: 1px solid rgb(180, 180, 180);
+}
+
+.todo-item:last-of-type {
+  border: none;
+}
+
+.todo-input,
+.remaining-and-clear-all-completed-todos,
+.todo-item {
+  box-sizing: border-box;
+  width: 24rem;
+}
+
+/* ---------------------------- style for hw2 ---------------------------- */
+
+.hw-2,
+.screen,
+.status-bar,
+.bottom-bar,
+.btns {
+  box-sizing: border-box;
+}
+
+.hw-2 {
+  margin: 4rem;
+  margin-left: 8rem;
+  border: 1px solid black;
+  width: 24rem;
+  height: 44rem;
+  border-radius: 4rem;
+  padding: 6.5rem 2rem;
+}
+
+.screen {
+  border: 2px solid black;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(96, 159, 253);
+}
+
+.status-bar {
+  font-size: 1.25rem;
+  width: 100%;
+  height: 10%;
+  padding: 0.2rem;
+  border: 1px dashed orangered;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.hw2-btn {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.btns {
+  /* background-color: rgb(250, 159, 159); */
+  width: 100%;
+  height: 70%;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.bottom-bar {
+  background-color: rgba(171, 202, 248, 0.5);
+  height: 20%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 1rem;
+  gap: 10px;
+}
