@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React in Single HTML</title>
+    <!-- React and ReactDOM CDN -->
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function MyList() {
+        return (
+          <div>
+            <ul>
+              <li>
+                Frontend is the part of the website that users can see and
+                interact with.
+              </li>
+              <li>
+                Frontend is also called <strong>client-side</strong>.
+              </li>
+              <li>Frontend is built with HTML, CSS, and JavaScript.</li>
+            </ul>
+          </div>
+        );
+      }
+
+      function App() {
+        return (
+          <div>
+            <h2>What is Frontend?</h2>
+            <MyList />
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
