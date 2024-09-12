@@ -1,0 +1,27 @@
+.converter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  input {
+    width: 200px;
+    padding: 10px;
+    margin-right: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    height: 16px;
+  }
+  
+  .result {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    height: 16px;
+  }
+  

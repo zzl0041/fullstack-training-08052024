@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.header, .nav, .footer, .aside, .section {
+    width: 100%;
+    padding: 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+    border: 1px solid #000;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.aside, .section {
+    flex-grow: 1;
+    min-height: 300px;
+}
+
+.footer {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+    }
+}

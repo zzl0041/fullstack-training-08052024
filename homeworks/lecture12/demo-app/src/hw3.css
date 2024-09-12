@@ -1,0 +1,41 @@
+/* Remove the gray background */
+body {
+    background-color: white;  /* Set the background color to white */
+}
+
+/* Style for the counter display */
+.counter {
+    font-size: 2em;
+    color: #333;
+}
+
+button {
+    background-color: #ddd;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: #ccc;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+button:focus {
+    outline: none;
+    border: 3px solid #007BFF; 
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7); 
+}
+
+.reset {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.reset:hover {
+    background-color: #ff1a1a;
+}
