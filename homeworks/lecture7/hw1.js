@@ -14,3 +14,23 @@
  */
 
 // your code here
+const fs = require('fs');
+const path = require('path');
+
+function filteredFile(dirName, extFilter) {
+  const extension = '.' + extFilter;
+
+  fs.readdir(dirName, (err, files) => {
+    if (err) {
+      return console.error('Error reading directory:', err);
+    }
+
+    files.forEach(file => {
+      if (path.extname(file) === extension) {
+        console.log(file);
+      }
+    });
+  });
+}
+
+filteredFile('fullstack-training-08052024/homeworks/lecture7', 'js');
