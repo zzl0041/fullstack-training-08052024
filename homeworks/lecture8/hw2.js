@@ -42,3 +42,43 @@
  *  }
  * }
  */
+
+const express = require('express');
+const app = express();
+const axios = require('axios');
+const PORT = 3000;
+
+app.get('/hw2', async (req, res) => {
+  const { query1, query2 } = req.query;
+
+  if (!query1 || !query2) {
+    return res.status(400).json({ error: 'Have no query1 or query2' });
+  }
+
+  try {
+    const fetchStoryData = async (query) => {
+      const response = await axios.get(`https://hn.algolia.com/api/v1/search?query=${query}&tags=story`);
+      const hit = response.data.hits[0];
+      return hit ? { created_at: hit.created_at, title: hit.title } : null;
+    };
+    
+    const [appleData, bananaData] = await Promise.all([
+      fetchStoryData(query1),
+      fetchStoryData(query2)
+    ]);
+    
+    const result = {
+      apple: appleData,
+      banana: bananaData
+    };
+
+    res.status(200).json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to fetch data' });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

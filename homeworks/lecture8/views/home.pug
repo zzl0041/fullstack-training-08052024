@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Home
+  body
+    h1 Home Page
+    form(action="/create-post", method="POST")
+      input(type="text", name="name", placeholder="Name", required)
+      input(type="number", name="age", placeholder="Age", required)
+      button(type="submit") Submit
+    
+    if query.name && query.age
+      h2 Submitted Data:
+      p Name: #{query.name}
+      p Age: #{query.age}
+    else
+      p No data
