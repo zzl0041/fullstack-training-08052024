@@ -1,0 +1,61 @@
+/* src/phone.css */
+.phone-screen {
+    width: 320px;
+    height: 600px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.screen-content {
+    width:90%;
+    height: 70%;
+    background-color: #6495ED;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.status-bar {
+    height: 20px;
+    background-color: #6495ED;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    border: 2px dashed rgb(224, 161, 161);
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    flex: 1;
+}
+
+.number-button {
+    background-color: white;
+    border: none;
+    color: black;
+    font-size: 28px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out, background-color 0.1s ease-in-out;
+}
+
+.number-button:hover {
+    background-color: #d3d3d3;
+}
+
+.number-button:active {
+    transform: scale(0.95);
+}
