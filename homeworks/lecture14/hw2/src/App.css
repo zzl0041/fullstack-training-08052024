@@ -1,0 +1,47 @@
+.App {
+  font-family: sans-serif;
+  text-align: left;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 2 columns */
+  grid-gap: 20px; /* Gap between grid items */
+}
+
+.card {
+  height: 150px;
+  border-radius: 1px;
+  text-align: left;
+  border: 1px solid gray;
+}
+
+.card p {
+  font-size: 12px;
+}
+.card input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 30px;
+  border: 1px solid gray;
+  border-radius: 2px;
+  padding-left: 10px;
+}
+
+.select-container {
+  display: flex;
+  gap: 200px;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  padding: 10px;
+}
+
+select {
+  width: 110px;
+  height: 25px;
+  background-color: rgb(73, 73, 73);
+  border: 1px sold gray;
+  border-radius: 2px;
+  text-align: center;
+  color: white;
+}
