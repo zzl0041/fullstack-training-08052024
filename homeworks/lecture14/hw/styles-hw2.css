@@ -1,0 +1,49 @@
+:root {
+  /* background-color: aquamarine; */
+  font-family: Arial, Helvetica, sans-serif;
+  --shadow: rgba(210, 210, 210, 0.85);
+}
+
+.hw-2 {
+}
+
+select {
+  background-color: rgb(100, 100, 100);
+  color: white;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+select:hover {
+  box-shadow: 0px 0px 3px 3px var(--shadow);
+}
+
+.dropdowns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  margin-bottom: 1rem;
+}
+
+.card {
+  border: 1px solid black;
+  width: 80%;
+  height: 10rem;
+  padding: 1rem;
+}
+
+.card > input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.25rem;
+}
+
+.cards-wrap {
+  /* border: 1px solid black; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  gap: 1rem;
+}
