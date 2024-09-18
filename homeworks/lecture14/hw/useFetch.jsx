@@ -10,12 +10,7 @@ const useFetch = (url) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(url, {
-          headers: {
-            Authorization:
-              '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',
-          },
-        });
+        const response = await axios.get(url);
         setData(response.data);
         setLoading(false);
       } catch (error) {
