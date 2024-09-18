@@ -52,7 +52,7 @@ class RemainingTodos extends React.Component {
   render() {
     const { todos } = this.props;
     const remainingTodos = todos.filter((todo) => !todo.checked).length;
-    return <p className='remaining-todos'>{remainingTodos}</p>;
+    return <p className='remaining-todos'>{remainingTodos} reamaining</p>;
   }
 }
 
