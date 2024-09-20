@@ -1,0 +1,48 @@
+/* src/Hw2.css */
+.container {
+    display: grid;
+    grid-template-areas:
+      "header header header"
+      "nav nav nav"
+      "aside section section"
+      "footer footer footer";
+    grid-template-columns: 1fr 2fr; /* Define columns for Aside and Section */
+    grid-template-rows: auto auto 1fr auto; /* Define rows for Header, Nav, Content, and Footer */
+    height: 100vh;
+    gap: 10px;
+  }
+  
+  .header {
+    grid-area: header;
+    background-color: #4CAF50;
+    padding: 20px;
+    text-align: center;
+    color: white;
+  }
+  
+  .nav {
+    grid-area: nav;
+    background-color: #f4f4f4;
+    padding: 20px;
+  }
+  
+  .aside {
+    grid-area: aside;
+    background-color: #f4f4f4;
+    padding: 20px;
+  }
+  
+  .section {
+    grid-area: section;
+    background-color: #e0e0e0;
+    padding: 20px;
+  }
+  
+  .footer {
+    grid-area: footer;
+    background-color: #4CAF50;
+    padding: 20px;
+    text-align: center;
+    color: white;
+  }
+  
