@@ -1,0 +1,43 @@
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  --shadow: rgba(210, 210, 210, 0.5);
+  width: 40%;
+  /* border: 1px solid black; */
+  padding: 4rem;
+}
+
+select {
+  background-color: rgb(100, 100, 100);
+  color: white;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+select:hover {
+  box-shadow: 0px 0px 3px 3px var(--shadow);
+}
+
+.dropdowns {
+  /* border: 1px solid blue; */
+  width: 80%;
+  display: flex;
+  gap: 4rem;
+}
+
+.card {
+  border: 1px solid black;
+  margin-top: 1rem;
+  width: 20rem;
+  height: 10rem;
+  padding: 1rem;
+}
+
+.hw2 {
+  /* border: 1px solid red; */
+  /* width: ; */
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
