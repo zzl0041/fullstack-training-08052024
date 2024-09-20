@@ -10,5 +10,6 @@ createRoot(document.getElementById('root')!).render(
     <HW1 />
     <br />
     <HW2 />
+    <br />
   </StrictMode>,
 )

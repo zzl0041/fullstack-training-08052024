@@ -13,6 +13,7 @@ function HW1() {
     if (e.key === "Enter") {
       e.preventDefault();
       setTodoList({...todoList, [todoInput]: false});
+      setTodoInput("");
     }
   };
 
@@ -20,8 +21,13 @@ function HW1() {
     setTodoList(Object.fromEntries(
       Object.entries(todoList).filter(([, checked]) => !checked))
     );
-    
   };
+
+  const markAllCompleted = () => {
+    setTodoList(Object.fromEntries(
+      Object.entries(todoList).map(([todo, ]) => [todo, true]))
+    );
+  }
 
   const checkTodo = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTodoList({...todoList, [e.target.value]: !todoList[e.target.value]});
@@ -44,6 +50,7 @@ function HW1() {
         <p>remaining {remaining} tasks</p>
         <form onSubmit={e => e.preventDefault()}>
           <button onClick={clearCompletedTodoList}>clear completed todos</button>
+          <button onClick={markAllCompleted}>mark all todos completed</button>
           {Object.entries(todoList).map(([todo, checked]) => (
             <div key={todo}>
               <label htmlFor={todo}>{todo}</label>
