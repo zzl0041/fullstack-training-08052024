@@ -1,7 +1,7 @@
 const { createStore } = require('redux');
 
 const initialState = {
-  count: 0
+  count: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -9,17 +9,17 @@ const reducer = (state = initialState, action) => {
     case 'INCREMENT':
       return {
         ...state,
-        count: state.count + 1
+        count: state.count + 1,
       };
     case 'DECREMENT':
       return {
         ...state,
-        count: state.count - 1
+        count: state.count - 1,
       };
     case 'RESET':
       return {
         ...state,
-        count: 0
+        count: 0,
       };
     default:
       return state;
@@ -33,4 +33,8 @@ store.subscribe(() => {
 });
 
 store.dispatch({ type: 'INCREMENT' });
+store.dispatch({ type: 'INCREMENT' });
+store.dispatch({ type: 'INCREMENT' });
+store.dispatch({ type: 'INCREMENT' });
+
 // store.dispatch({ type: 'ADD_TODO', text: 'drink water' });
