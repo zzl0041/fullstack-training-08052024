@@ -7,6 +7,16 @@ const path = require('path');
 
 dotenv.config();
 
+const fs = require('fs');
+const envPath = path.resolve(__dirname, '.env');
+const envConfig = fs.readFileSync(envPath, 'utf8');
+
+const lines = envConfig.split('\n');
+const filteredLines = lines.filter(line => line.trim() !== '');
+
+const MONGO_URI = filteredLines[1].split('=')[1];
+
+
 const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -22,7 +32,8 @@ app.get('/', (req, res) => {
     res.render('index', { todos });
   });
 
-mongoose.connect('mongodb+srv://root:Hzpeng527@terencelincluster0.ppmro.mongodb.net/')
+  
+mongoose.connect(MONGO_URI)
     .then(()=>console.log('Connected to MongoDB'))
     .catch(err=>console.log(err));
 
