@@ -10,3 +10,7 @@
 ```
 
 Turn the HTML above into React components and display
+
+
+Check the homework of lecture12 in the link below:
+https://codesandbox.io/p/sandbox/lecture12-snyff4
