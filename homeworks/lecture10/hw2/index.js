@@ -1,7 +1,7 @@
 const express = require('express');
-const Todo = require('./models/Todo');
+const Todo = require('./models/todo');
 const app = express();
-
+const connectDB = require('./db/db')
 
 // Middleware
 app.use(express.static('public'));
@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'pug');
 app.set('views', './views');
 
+connectDB();
 
 app.get('/', async(req,res)=>{
     const todos = await Todo.find()
@@ -20,7 +21,8 @@ app.get('/', async(req,res)=>{
 
 app.post('/api/todos', async(req,res)=>{
     const todo = new Todo({
-        todo:req.body.todo
+        todo:req.body.todo,
+        done:false
     })
     await todo.save()
     res.json(todo)

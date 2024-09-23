@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const todoSchema = mongoose.todoSchema({
+const todoSchema = mongoose.Schema({
     todo:{
         type:String,
         required:true
@@ -11,10 +11,10 @@ const todoSchema = mongoose.todoSchema({
     },
     createdAt:{
         type:Date,
-        default: Date.now()
+        default: Date.now
     }
 })
 
 const Todo = mongoose.model('Todo', todoSchema)
 
-module.exports = {Todo}
+module.exports = Todo
