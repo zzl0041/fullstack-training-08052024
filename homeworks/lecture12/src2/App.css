@@ -1,0 +1,47 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  position: relative;
+}
+
+header, .top, section, footer{
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+header {
+  top: 0%;
+  background-color: green;
+  height: 25%;
+}
+
+.top {
+  background-color: red;
+  top: 25%;
+  height: 25%;
+  display: flex;
+}
+
+.left {
+  background-color: purple;  
+  width:50%;
+}
+
+.right {
+  background-color: rgb(255, 0, 208);
+  width:50%;
+}
+
+section {
+  background-color: yellow;
+  top: 50%;
+  height: 25%;
+}
+
+footer {
+  background-color: red;
+  top:75%;
+  height: 25%;
+}
