@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <form action="/api/todos" method="POST">
+        <input type="text" name="text" placeholder="Enter todo..." required />
+        <button type="submit">Add Todo</button>
+    </form>
+
+    <ul>
+        <% todos.forEach(todo => { %>
+            <li style="text-decoration: <%= todo.completed ? 'line-through' : 'none' %>">
+                <%= todo.text %>
+                <form action="/api/todos/<%= todo._id %>?_method=PATCH" method="POST">
+                    <button type="submit">Toggle</button>
+                </form>
+                <form action="/api/todos/<%= todo._id %>?_method=DELETE" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>
