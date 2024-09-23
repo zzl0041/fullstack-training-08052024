@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "dev:server": "cd backend && nodemon index.js",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:frontend\"",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "concurrently": "^9.0.1"
+  }
+}
