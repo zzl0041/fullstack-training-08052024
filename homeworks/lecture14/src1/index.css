@@ -1,0 +1,89 @@
+.container {
+  display: flex;
+  padding: 20px;
+  gap: 40px; 
+}
+
+.left {
+  width: 40%;
+  list-style-type: none;
+  padding: 0;
+}
+
+.left .header {
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ccc;
+}
+
+.left .user-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.left .user-item:hover{
+  background-color: rgb(148, 148, 148);
+}
+
+.first, .second, .third {
+  width: 33%;
+}
+
+.first {
+  text-align: left;
+}
+
+.second {
+  text-align: center;
+}
+
+.third {
+  text-align: right;
+}
+
+
+.right{
+  width: 50%;
+  height: 80%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fafafa;
+}
+
+.right img {
+  display: block;
+  margin-bottom: 20px;
+}
+
+
+.right .username {
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.right ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.right ul li {
+  margin-bottom: 10px;
+}
+
+.right ul li a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.right ul li a:hover {
+  text-decoration: underline;
+}
