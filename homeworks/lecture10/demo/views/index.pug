@@ -38,7 +38,14 @@ html(lang="en")
                                 data-id= todo.id
                                 class="form-check-input"
                             )
-                        div.col
+                        div.col-9
                             label(for= todo.todo) #{todo.todo}
+                        div.col-2
+                            button(
+                                type="button"
+                                onclick="handleDelete(this)"
+                                data-id= todo._id
+                                class="btn btn-danger btn-sm"
+                            ) Delete
         script
             include ../public/main.js

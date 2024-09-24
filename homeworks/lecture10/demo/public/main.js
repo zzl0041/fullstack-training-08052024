@@ -1,6 +1,22 @@
-function handleCheck(ele) {
+async function handleDelete(ele) {
   const id = ele.dataset.id;
-  fetch(`/api/todos/${id}`, {
+  const res = await fetch(`/api/todos/${id}`, {
+    method: 'DELETE'
+  })
+  if (res.ok) {
+      // Remove the todo item from the DOM
+      const todoItem = ele.closest('.todo-item');
+      if (todoItem) {
+         todoItem.remove();
+      }
+  } else {
+      console.error('Failed to delete todo');
+  }
+}
+
+async function handleCheck(ele) {
+  const id = ele.dataset.id;
+  await fetch(`/api/todos/${id}`, {
     method: 'PUT'
   })
     .then(res => res.json())
@@ -9,10 +25,10 @@ function handleCheck(ele) {
     });
 }
 
-function handleSubmit() {
+async function handleSubmit() {
   const todo = document.querySelector('#todo').value;
   if (!todo) return alert('Please enter a todo');
-  fetch('/api/todos', {
+  await fetch('/api/todos', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
