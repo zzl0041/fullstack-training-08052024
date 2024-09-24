@@ -1,0 +1,79 @@
+#root {
+  font-family: Arial, Helvetica, sans-serif;
+  /* border: 1px solid black; */
+  width: 24rem;
+  padding: 6rem;
+  padding-top: 1rem;
+}
+
+.todo-input {
+  /* background-color: aqua; */
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid darkgrey;
+}
+
+.todo-input:focus {
+  outline: none !important;
+  border: 1px solid rgb(122, 189, 240);
+  border-radius: 2px;
+  box-shadow: 0px 0px 3px 3px rgb(122, 189, 240, 0.75);
+}
+
+button {
+  padding: 0.25rem 0.5rem;
+  background-color: white;
+  border: 1px solid rgb(97, 103, 110);
+  border-radius: 4px;
+  color: rgb(80, 80, 80);
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: rgb(97, 103, 110);
+  color: white;
+}
+
+button:focus {
+  box-shadow: 0px 0px 3px 3px rgb(97, 103, 110, 0.85);
+}
+
+.remaining-and-clear-all-completed-todos {
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  gap: 10px;
+  margin-bottom: 0.75rem;
+}
+
+.todos-list {
+  border: 1px solid rgb(180, 180, 180);
+  border-radius: 0.25rem;
+  margin-top: 1rem;
+}
+
+.todos-list:empty {
+  border: none;
+}
+
+.todo-item {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(180, 180, 180);
+}
+
+.todo-item:last-of-type {
+  border: none;
+}
+
+.todo-input,
+.remaining-and-clear-all-completed-todos,
+.todo-item {
+  box-sizing: border-box;
+  /* width: 24rem; */
+}

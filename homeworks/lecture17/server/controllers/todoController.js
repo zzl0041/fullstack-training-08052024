@@ -18,8 +18,8 @@ const getAllTodos = async (req, res) => {
   //   res.send("get all todos");
   try {
     const todos = await Todo.find();
-    // res.status(200).json(todos);
-    res.render('index', { todos });
+    res.status(200).json(todos);
+    // res.render("index", { todos });
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ message: 'Server Error' });
