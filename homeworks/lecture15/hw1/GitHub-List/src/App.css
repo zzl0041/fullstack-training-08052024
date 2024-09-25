@@ -1,0 +1,79 @@
+.App {
+  display: flex;
+  padding: 20px;
+}
+
+.user-list-container {
+  width: 320px;
+  border-right: 1px solid #ddd;
+  padding-right: 20px;
+}
+
+.user-profile-container {
+  width: 600px;
+  padding-left: 40px;
+}
+
+.user-list-table {
+  cursor: pointer;
+  width: 300px;
+  margin-right: 20px;
+}
+
+.user-profile-card {
+  width: 600px;
+  height: fit-content;
+  padding: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.user-profile-content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.user-profile-avatar {
+  margin-right: 20px;
+}
+
+.user-profile-details {
+  flex: 1;
+}
+
+.user-profile-name {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.user-profile-location {
+  color: gray;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.user-profile-repo-title {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: gray;
+}
+
+.user-profile-repo-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.user-profile-repo-item {
+  margin-bottom: 5px;
+}
+
+.user-profile-repo-link {
+  color:rgba(0, 157, 255, 0.666)
+}
+
+.user-profile-repo-description {
+  color: gray;
+  margin-top: 5px;
+}
