@@ -19,7 +19,8 @@ function TodoApp() {
   };
 
   const clearCompleted = () => {
-    setTodos(todos.filter((todo) => !todo.completed));
+    setTodos(todos.filter(todo => !todo.completed));
+    setMarkAll(false); 
   };
 
   const handleMarkAll = () => {
