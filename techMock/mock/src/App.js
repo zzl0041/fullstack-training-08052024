@@ -16,6 +16,8 @@ import UserList from './mockRedux/UserList';
 import List from './mockRedux/List';
 import SnowflakeOA from './components/Snowflake/SnowflakeOA';
 import ItemLeftRight from './components/ItemLeftRight/ItemLeftRight';
+import ContactForm from './components/MockInter/ContactForm';
+import SmartSearch from './components/HuMock/SmartSearch';
 
 function App() {
   const count = useSelector((state) => state.count);
@@ -80,7 +82,9 @@ function App() {
           <List/>
         </Provider> */}
         {/* <SnowflakeOA/> */}
-        <ItemLeftRight/>
+        {/* <ItemLeftRight/> */}
+        {/* <ContactForm/> */}
+        <SmartSearch/>
     </div>
     
 
