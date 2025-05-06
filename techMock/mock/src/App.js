@@ -18,6 +18,7 @@ import SnowflakeOA from './components/Snowflake/SnowflakeOA';
 import ItemLeftRight from './components/ItemLeftRight/ItemLeftRight';
 import ContactForm from './components/MockInter/ContactForm';
 import SmartSearch from './components/HuMock/SmartSearch';
+import SnowFlake1 from './components/HuMock/SnowFlake1';
 
 function App() {
   const count = useSelector((state) => state.count);
@@ -85,6 +86,7 @@ function App() {
         {/* <ItemLeftRight/> */}
         {/* <ContactForm/> */}
         <SmartSearch/>
+        {/* <SnowFlake1/> */}
     </div>
     
 
